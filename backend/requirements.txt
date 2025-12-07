@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+openai>=1.0.0
+sqlalchemy
+pydantic
+python-dotenv
+httpx<0.28.0
+pypdf
+python-docx
+python-multipart

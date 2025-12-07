@@ -1,0 +1,1537 @@
+[
+  {
+    "filename": "formatted_interview_P01.txt",
+    "result": {
+      "phase1_codes": {
+        "codes": [
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "2.6.1 Cabeza",
+            "code": "2.6.1 Cabeza",
+            "verbatim": "My head feels... untethered. It feels like it floats up a millimeter.",
+            "description": "Participant describes a sensation of the head feeling untethered and floating, suggesting a localized sensation in the head."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Localizaci\u00f3n corporal",
+            "sub_category": "2.6.3 Pecho",
+            "code": "2.6.3 Pecho",
+            "verbatim": "A tension in the solar plexus. A tiny knot.",
+            "description": "The participant describes a tension localized in the solar plexus area."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "2.4.2 Hormigueo",
+            "code": "2.4.2 Hormigueo",
+            "verbatim": "It is very fast. High frequency. Like... carbonated water. Bubbles popping.",
+            "description": "The participant describes a tingling sensation similar to bubbles popping."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Affective Quality",
+            "category": "Cualidad Afectiva",
+            "sub_category": "2.1.4 Miedo",
+            "code": "2.1.4 Miedo",
+            "verbatim": "A fear. 'I need to breathe.'",
+            "description": "The participant experiences fear associated with a need to breathe."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Cognitive Qualities",
+            "category": "Perception of Time",
+            "sub_category": "6.4 Percepci\u00f3n de tiempo alterada",
+            "code": "6.4 Percepci\u00f3n de tiempo alterada",
+            "verbatim": "It feels like everything is happening at once. The beginning of the car sound and the end of the car sound... are held in the same moment.",
+            "description": "The participant experiences time as suspended, with events occurring simultaneously."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Corporeality",
+            "category": "Boundaries",
+            "sub_category": "Porous",
+            "code": "Skull Porosity",
+            "verbatim": "It feels like... the boundaries of the skull become porous.",
+            "description": "Participant describes a sensation of the skull's boundaries becoming porous, indicating diffuse corporeal boundaries."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Self (Ipseity)",
+            "category": "Alterations",
+            "sub_category": "Dissolution",
+            "code": "Self-Dissolution",
+            "verbatim": "The concept of 'nose' is gone. The concept of 'scratching' is gone. There is just... being.",
+            "description": "Participant experiences a dissolution of self, with concepts of bodily identity fading."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Affective",
+            "category": "Background States (Stimmung)",
+            "sub_category": "Benevolence",
+            "code": "Space-Kindness",
+            "verbatim": "The space feels... kind.",
+            "description": "Participant describes the emotional quality of the space as kind and benevolent."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Intentional",
+            "category": "Direction of Attention",
+            "sub_category": "Modal Attention",
+            "code": "Attention in Expansion",
+            "verbatim": "It expands out in all directions.",
+            "description": "Participant describes an expansion of attention beyond the body."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Meta-phenomenological",
+            "category": "Experiential Residue",
+            "sub_category": "Tingling Memory",
+            "code": "Cellular Memory",
+            "verbatim": "My skin still feels a bit... tingling. Like it remembers being a cloud.",
+            "description": "Participant experiences a residual sensation of tingling, as if the body remembers past states."
+          }
+        ]
+      },
+      "phase2_diachronic": {
+        "phases": [
+          {
+            "phase_name": "Initiation",
+            "temporal_segment": "0-30s",
+            "description": "Lucas begins to settle into the meditative practice with a sense of stable centrality and focus around the spine, pelvis, and nostrils.",
+            "dominant_codes": [
+              "2.6.1 Cabeza",
+              "2.6.3 Pecho"
+            ]
+          },
+          {
+            "phase_name": "Becoming Porous",
+            "temporal_segment": "30-60s",
+            "description": "Lucas experiences a sensation of his head feeling untethered and the boundaries becoming porous, with a coolness as if the room's air is inside his head.",
+            "dominant_codes": [
+              "Skull Porosity",
+              "2.6.1 Cabeza"
+            ]
+          },
+          {
+            "phase_name": "Tingling and Fizzing",
+            "temporal_segment": "60-90s",
+            "description": "A tingling sensation spreads from the fingertips, likened to bubbles popping and moving quickly through the arms, leading to a feeling of the body losing its defined structure.",
+            "dominant_codes": [
+              "2.4.2 Hormigueo",
+              "Attention in Expansion"
+            ]
+          },
+          {
+            "phase_name": "Dissolution of Self",
+            "temporal_segment": "90-120s",
+            "description": "The concept of 'self' begins to dissolve, with Lucas experiencing a loss of bodily identity, leading to a state of expansive awareness and a non-linear perception of time.",
+            "dominant_codes": [
+              "Self-Dissolution",
+              "6.4 Percepci\u00f3n de tiempo alterada"
+            ]
+          },
+          {
+            "phase_name": "Golden Water State",
+            "temporal_segment": "120-150s",
+            "description": "Lucas settles into a stable state characterized by a sense of benevolent space, a feeling of being held by the environment, with his awareness expanding beyond his body.",
+            "dominant_codes": [
+              "Space-Kindness",
+              "Attention in Expansion"
+            ]
+          },
+          {
+            "phase_name": "Return to Self",
+            "temporal_segment": "150-180s",
+            "description": "A sudden intake of breath disrupts the state, leading to a shattering of the expansive awareness and a return to a confined sense of self, accompanied by feelings of loneliness and loss.",
+            "dominant_codes": [
+              "2.1.4 Miedo",
+              "Cellular Memory"
+            ]
+          }
+        ]
+      },
+      "phase3_synchronic": {
+        "synchronic_configurations": [
+          {
+            "phase_name": "Initiation",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 7,
+                "description": "Stable centrality and focus around spine, pelvis, and nostrils"
+              },
+              "Affective": {
+                "intensity": 5,
+                "description": "Stable focus"
+              }
+            }
+          },
+          {
+            "phase_name": "Becoming Porous",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 8,
+                "description": "Head feeling untethered and porous"
+              },
+              "Spatial": {
+                "intensity": 7,
+                "description": "Blurring of bodily boundaries"
+              }
+            }
+          },
+          {
+            "phase_name": "Tingling and Fizzing",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 9,
+                "description": "Tingling sensation spreading through body"
+              },
+              "Dynamic": {
+                "intensity": 6,
+                "description": "Fast and high-frequency movement in extremities"
+              }
+            }
+          },
+          {
+            "phase_name": "Dissolution of Self",
+            "active_dimensions": {
+              "Self (Ipseity)": {
+                "intensity": 9,
+                "description": "Dissolution of personal identity"
+              },
+              "Temporal": {
+                "intensity": 7,
+                "description": "Non-linear perception of time"
+              }
+            }
+          },
+          {
+            "phase_name": "Golden Water State",
+            "active_dimensions": {
+              "Affective": {
+                "intensity": 8,
+                "description": "Benevolent space and external awareness"
+              },
+              "Intentional": {
+                "intensity": 9,
+                "description": "Expanded attention beyond the body"
+              }
+            }
+          },
+          {
+            "phase_name": "Return to Self",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 6,
+                "description": "Shattering of expansive awareness"
+              },
+              "Affective": {
+                "intensity": 7,
+                "description": "Feelings of loneliness and loss"
+              }
+            }
+          }
+        ],
+        "body_map_data": {
+          "head": {
+            "count": 2,
+            "quotes": [
+              "My head feels... untethered.",
+              "It feels like... the boundaries of the skull become porous."
+            ]
+          },
+          "chest": {
+            "count": 1,
+            "quotes": [
+              "A tension in the solar plexus. A tiny knot."
+            ]
+          },
+          "solar_plexus": {
+            "count": 1,
+            "quotes": [
+              "A tension in the solar plexus. A tiny knot."
+            ]
+          },
+          "abdomen": {
+            "count": 0,
+            "quotes": []
+          },
+          "pelvis": {
+            "count": 1,
+            "quotes": [
+              "..."
+            ]
+          },
+          "extremities": {
+            "count": 1,
+            "quotes": [
+              "It is very fast. High frequency. Like... carbonated water. Bubbles popping."
+            ]
+          },
+          "whole_body": {
+            "count": 1,
+            "quotes": [
+              "My skin still feels a bit... tingling. Like it remembers being a cloud."
+            ]
+          }
+        }
+      },
+      "phase4_invariants": {
+        "invariants": [
+          {
+            "name": "Head Sensation",
+            "description": "Experiences consistently involve a sensation localized in the head, feeling untethered or porous.",
+            "evidence": [
+              "My head feels... untethered.",
+              "It feels like... the boundaries of the skull become porous."
+            ]
+          },
+          {
+            "name": "Corporeal Boundary Perception",
+            "description": "Participants consistently describe altered perceptions of corporeal boundaries, often feeling porous or expanded.",
+            "evidence": [
+              "It feels like... the boundaries of the skull become porous.",
+              "It expands out in all directions."
+            ]
+          },
+          {
+            "name": "Self-Dissolution",
+            "description": "There is a recurring theme of the dissolution of personal identity during the experience.",
+            "evidence": [
+              "The concept of 'nose' is gone. The concept of 'scratching' is gone. There is just... being.",
+              "The participant experiences a dissolution of self, with concepts of bodily identity fading."
+            ]
+          },
+          {
+            "name": "Temporal Alteration",
+            "description": "Experiences often include a non-linear perception of time, with events perceived as simultaneous.",
+            "evidence": [
+              "It feels like everything is happening at once. The beginning of the car sound and the end of the car sound... are held in the same moment."
+            ]
+          },
+          {
+            "name": "Tingling Sensation",
+            "description": "The sensation of tingling, often described as similar to bubbles popping, is a consistent sensory experience.",
+            "evidence": [
+              "It is very fast. High frequency. Like... carbonated water. Bubbles popping.",
+              "My skin still feels a bit... tingling. Like it remembers being a cloud."
+            ]
+          },
+          {
+            "name": "Benevolent Space",
+            "description": "Participants often describe the space around them as having an emotional quality of kindness and benevolence.",
+            "evidence": [
+              "The space feels... kind.",
+              "Participant describes the emotional quality of the space as kind and benevolent."
+            ]
+          }
+        ]
+      },
+      "phase5_visualizations": {
+        "mermaid_diagram": "graph TD\n    A[Initiation] --> B[Becoming Porous]\n    B --> C[Tingling and Fizzing]\n    C --> D[Dissolution of Self]\n    D --> E[Golden Water State]\n    E --> F[Return to Self]",
+        "heatmap_data": {
+          "synchronic_configurations": [
+            {
+              "phase_name": "Initiation",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 7,
+                  "description": "Stable centrality and focus around spine, pelvis, and nostrils"
+                },
+                "Affective": {
+                  "intensity": 5,
+                  "description": "Stable focus"
+                }
+              }
+            },
+            {
+              "phase_name": "Becoming Porous",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 8,
+                  "description": "Head feeling untethered and porous"
+                },
+                "Spatial": {
+                  "intensity": 7,
+                  "description": "Blurring of bodily boundaries"
+                }
+              }
+            },
+            {
+              "phase_name": "Tingling and Fizzing",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 9,
+                  "description": "Tingling sensation spreading through body"
+                },
+                "Dynamic": {
+                  "intensity": 6,
+                  "description": "Fast and high-frequency movement in extremities"
+                }
+              }
+            },
+            {
+              "phase_name": "Dissolution of Self",
+              "active_dimensions": {
+                "Self (Ipseity)": {
+                  "intensity": 9,
+                  "description": "Dissolution of personal identity"
+                },
+                "Temporal": {
+                  "intensity": 7,
+                  "description": "Non-linear perception of time"
+                }
+              }
+            },
+            {
+              "phase_name": "Golden Water State",
+              "active_dimensions": {
+                "Affective": {
+                  "intensity": 8,
+                  "description": "Benevolent space and external awareness"
+                },
+                "Intentional": {
+                  "intensity": 9,
+                  "description": "Expanded attention beyond the body"
+                }
+              }
+            },
+            {
+              "phase_name": "Return to Self",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 6,
+                  "description": "Shattering of expansive awareness"
+                },
+                "Affective": {
+                  "intensity": 7,
+                  "description": "Feelings of loneliness and loss"
+                }
+              }
+            }
+          ],
+          "body_map_data": {
+            "head": {
+              "count": 2,
+              "quotes": [
+                "My head feels... untethered.",
+                "It feels like... the boundaries of the skull become porous."
+              ]
+            },
+            "chest": {
+              "count": 1,
+              "quotes": [
+                "A tension in the solar plexus. A tiny knot."
+              ]
+            },
+            "solar_plexus": {
+              "count": 1,
+              "quotes": [
+                "A tension in the solar plexus. A tiny knot."
+              ]
+            },
+            "abdomen": {
+              "count": 0,
+              "quotes": []
+            },
+            "pelvis": {
+              "count": 1,
+              "quotes": [
+                "..."
+              ]
+            },
+            "extremities": {
+              "count": 1,
+              "quotes": [
+                "It is very fast. High frequency. Like... carbonated water. Bubbles popping."
+              ]
+            },
+            "whole_body": {
+              "count": 1,
+              "quotes": [
+                "My skin still feels a bit... tingling. Like it remembers being a cloud."
+              ]
+            }
+          }
+        },
+        "timeline_data": {
+          "phases": [
+            {
+              "phase_name": "Initiation",
+              "temporal_segment": "0-30s",
+              "description": "Lucas begins to settle into the meditative practice with a sense of stable centrality and focus around the spine, pelvis, and nostrils.",
+              "dominant_codes": [
+                "2.6.1 Cabeza",
+                "2.6.3 Pecho"
+              ]
+            },
+            {
+              "phase_name": "Becoming Porous",
+              "temporal_segment": "30-60s",
+              "description": "Lucas experiences a sensation of his head feeling untethered and the boundaries becoming porous, with a coolness as if the room's air is inside his head.",
+              "dominant_codes": [
+                "Skull Porosity",
+                "2.6.1 Cabeza"
+              ]
+            },
+            {
+              "phase_name": "Tingling and Fizzing",
+              "temporal_segment": "60-90s",
+              "description": "A tingling sensation spreads from the fingertips, likened to bubbles popping and moving quickly through the arms, leading to a feeling of the body losing its defined structure.",
+              "dominant_codes": [
+                "2.4.2 Hormigueo",
+                "Attention in Expansion"
+              ]
+            },
+            {
+              "phase_name": "Dissolution of Self",
+              "temporal_segment": "90-120s",
+              "description": "The concept of 'self' begins to dissolve, with Lucas experiencing a loss of bodily identity, leading to a state of expansive awareness and a non-linear perception of time.",
+              "dominant_codes": [
+                "Self-Dissolution",
+                "6.4 Percepci\u00f3n de tiempo alterada"
+              ]
+            },
+            {
+              "phase_name": "Golden Water State",
+              "temporal_segment": "120-150s",
+              "description": "Lucas settles into a stable state characterized by a sense of benevolent space, a feeling of being held by the environment, with his awareness expanding beyond his body.",
+              "dominant_codes": [
+                "Space-Kindness",
+                "Attention in Expansion"
+              ]
+            },
+            {
+              "phase_name": "Return to Self",
+              "temporal_segment": "150-180s",
+              "description": "A sudden intake of breath disrupts the state, leading to a shattering of the expansive awareness and a return to a confined sense of self, accompanied by feelings of loneliness and loss.",
+              "dominant_codes": [
+                "2.1.4 Miedo",
+                "Cellular Memory"
+              ]
+            }
+          ]
+        }
+      },
+      "phase6_integration": {
+        "interpretative_text": "# Results and Discussion\n\n## Phenomenological Summary\nThe experience unfolded through a sequence of phases, each marked by distinct sensory and emotional dynamics. Initially, Lucas entered a state of 'Initiation,' marked by stable corporeal and affective centering around the spine and nostrils. As the practice deepened, he experienced 'Becoming Porous,' characterized by a sensation of the head becoming untethered and its boundaries blurring. This transited into a phase of 'Tingling and Fizzing,' where tingling sensations akin to bubbles moving rapidly spread through the body, leading to 'Dissolution of Self,' a profound phase where personal identity dissolved and an expansive awareness emerged. Eventually, Lucas reached the 'Golden Water State,' described as a stable and benevolent expansiveness. However, the 'Return to Self' phase abruptly shattered this expansive awareness, bringing forth feelings of loneliness and loss.\n\n## Theoretical Implications\nThe findings highlight several dimensions of the Extended Phenomenological Map. Corporeality is prominently featured in the 'Initiation,' 'Becoming Porous,' and 'Tingling and Fizzing' phases, showcasing a transition from stable centrality to an expanded bodily awareness. The dissolution of self indicates an intense interaction with Ipseity, challenging the rigid boundaries of personal identity. Temporal experiences, particularly in 'Dissolution of Self,' suggest a non-linear perception of time, consistent with the theme of Temporal Alteration in the invariants. The experience of 'Golden Water State' points to an expansive intentional dimension, where attention projects beyond bodily confines.\n\n## Clinical/Practical Relevance\nThis phenomenological analysis offers insights for therapeutic practices focused on mindfulness and meditative states. The described phases underscore potential therapeutic pathways for facilitating self-dissolution and overcoming rigid identity constructs, which may benefit individuals grappling with anxiety or depersonalization. The emotional landscape of benevolent space observed in 'Golden Water State' could also inform therapeutic environments aiming to foster feelings of kindness and security.\n\n## Limitations & Future Directions\nWhile the study provides a rich tapestry of phenomenological insights, the data is limited to a single participant, which may not capture diverse individual experiences. Future research might explore variations across different perceptual faculties or psychological backgrounds, thereby enhancing the generalizability of findings. Additionally, longitudinal studies could investigate how repeated exposure to such states impacts psychological and emotional well-being over time."
+      }
+    }
+  },
+  {
+    "filename": "formatted_interview_P02.txt",
+    "result": {
+      "phase1_codes": {
+        "codes": [
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "Presi\u00f3n",
+            "code": "2.4.1",
+            "verbatim": "There's this heaviness in my chest",
+            "description": "The participant experiences a physical sensation representing emotional heaviness."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Affective",
+            "category": "Cualidad Afectiva",
+            "sub_category": "Confusi\u00f3n",
+            "code": "2.1.10",
+            "verbatim": "I'm thinking about my job, realizing I can't do it anymore.",
+            "description": "The participant feels a mix of confusion and realization about a life situation."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "Peso",
+            "code": "2.4.4",
+            "verbatim": "It's like a weight, a pressing down sensation.",
+            "description": "The participant describes a sensation of weight as part of their emotional experience."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Affective",
+            "category": "Cualidad Afectiva",
+            "sub_category": "Angustia",
+            "code": "2.1.11",
+            "verbatim": "The heaviness gets more intense, and my stomach starts to knot up.",
+            "description": "Heightened emotional state leading to a feeling of distress."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Temporalidad de la experiencia",
+            "category": "Cognitiva",
+            "sub_category": "Previsualizaci\u00f3n de la experiencia",
+            "code": "4.2",
+            "verbatim": "I make the decision to quit. It's like a switch flips in my head.",
+            "description": "A decisive moment that changes the mental state."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "Liviandad",
+            "code": "2.4.6",
+            "verbatim": "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens.",
+            "description": "The participant feels a lightness as tension releases."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Temporal",
+            "category": "Percepci\u00f3n de tiempo alterada",
+            "sub_category": "Slowed",
+            "code": "6.4",
+            "verbatim": "Time slows down. It feels like I'm in this bubble where everything outside is paused.",
+            "description": "Dramatic alteration in the sense of time during the decision-making process."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Cognitiva",
+            "category": "Estrategias de regulaci\u00f3n",
+            "sub_category": "Autodi\u00e1logo amable",
+            "code": "3.3",
+            "verbatim": "I feel more solid, like I'm finally listening to myself. It's empowering.",
+            "description": "Reinforcement of self through affirmative self-dialogue."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Intentional",
+            "category": "Direction of attention",
+            "sub_category": "Modality",
+            "code": "Immersion Degree",
+            "verbatim": "The light seems to change, feels brighter.",
+            "description": "Heightened perception of the environment indicating a shift in focus."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Self (Ipseity)",
+            "category": "Alterations",
+            "sub_category": "Empowerment",
+            "code": "Empowered-Self",
+            "verbatim": "I feel more solid, like I'm finally listening to myself.",
+            "description": "Affective reinforcement of agency and self-validation."
+          }
+        ]
+      },
+      "phase2_diachronic": {
+        "phases": [
+          {
+            "phase_name": "Initiation",
+            "temporal_segment": "0-30s",
+            "description": "The participant is introduced to the process and asked to recall a significant decision-making moment.",
+            "dominant_codes": [
+              "Immersion Degree"
+            ]
+          },
+          {
+            "phase_name": "Recalling the Setting",
+            "temporal_segment": "30s-1m",
+            "description": "The participant describes the setting, where they are in the kitchen, holding a mug with a sense of heaviness.",
+            "dominant_codes": [
+              "2.4.1",
+              "2.4.4"
+            ]
+          },
+          {
+            "phase_name": "Building Tension",
+            "temporal_segment": "1m-1m30s",
+            "description": "The participant reflects on their job situation, feeling confusion and a mix of emotions, leading to physical tension.",
+            "dominant_codes": [
+              "2.1.10",
+              "2.1.11"
+            ]
+          },
+          {
+            "phase_name": "Moment of Decision",
+            "temporal_segment": "1m30s-2m",
+            "description": "The participant makes the decision to quit, experiences a cognitive shift represented by a 'switch' in their head.",
+            "dominant_codes": [
+              "4.2",
+              "6.4"
+            ]
+          },
+          {
+            "phase_name": "Release and Altered Perception",
+            "temporal_segment": "2m-2m30s",
+            "description": "The participant feels a lightness as tension releases, accompanied by changes in perception and empowerment.",
+            "dominant_codes": [
+              "2.4.6",
+              "Empowered-Self",
+              "Immersion Degree"
+            ]
+          },
+          {
+            "phase_name": "Empowerment and Reflection",
+            "temporal_segment": "2m30s-3m",
+            "description": "The participant reinforces their identity with positive self-dialogue and reflects on their decision.",
+            "dominant_codes": [
+              "3.3",
+              "Empowered-Self"
+            ]
+          },
+          {
+            "phase_name": "Closure",
+            "temporal_segment": "3m-end",
+            "description": "The participant reflects on the significance of the decision, feeling proud and acknowledging the importance of listening to their body.",
+            "dominant_codes": [
+              "Immersion Degree",
+              "Empowered-Self"
+            ]
+          }
+        ]
+      },
+      "phase3_synchronic": {
+        "synchronic_configurations": [
+          {
+            "phase_name": "Initiation",
+            "active_dimensions": {
+              "Intentional": {
+                "intensity": 7,
+                "description": "Heightened environmental perception"
+              }
+            }
+          },
+          {
+            "phase_name": "Recalling the Setting",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 8,
+                "description": "Heaviness and weight sensation in chest"
+              },
+              "Affective": {
+                "intensity": 6,
+                "description": "Mild confusion"
+              }
+            }
+          },
+          {
+            "phase_name": "Building Tension",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 7,
+                "description": "Tightness in the stomach"
+              },
+              "Affective": {
+                "intensity": 8,
+                "description": "Intense emotional confusion and distress"
+              }
+            }
+          },
+          {
+            "phase_name": "Moment of Decision",
+            "active_dimensions": {
+              "Cognitiva": {
+                "intensity": 9,
+                "description": "Decisive cognitive shift"
+              },
+              "Affective": {
+                "intensity": 7,
+                "description": "Mixture of emotions with empowerment"
+              }
+            }
+          },
+          {
+            "phase_name": "Release and Altered Perception",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 6,
+                "description": "Lightness and relaxation"
+              },
+              "Temporal": {
+                "intensity": 7,
+                "description": "Altered time perception"
+              }
+            }
+          },
+          {
+            "phase_name": "Empowerment and Reflection",
+            "active_dimensions": {
+              "Cognitiva": {
+                "intensity": 7,
+                "description": "Positive self-dialogue"
+              },
+              "Self (Ipseity)": {
+                "intensity": 8,
+                "description": "Empowering self-validation"
+              }
+            }
+          },
+          {
+            "phase_name": "Closure",
+            "active_dimensions": {
+              "Intentional": {
+                "intensity": 6,
+                "description": "Reflective attention on self"
+              },
+              "Self (Ipseity)": {
+                "intensity": 9,
+                "description": "Pride and self-acknowledgment"
+              }
+            }
+          }
+        ],
+        "body_map_data": {
+          "head": {
+            "count": 2,
+            "quotes": [
+              "I make the decision to quit. It's like a switch flips in my head.",
+              "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens."
+            ]
+          },
+          "chest": {
+            "count": 3,
+            "quotes": [
+              "There's this heaviness in my chest",
+              "It's like a weight, a pressing down sensation.",
+              "The heaviness gets more intense, and my stomach starts to knot up."
+            ]
+          },
+          "solar_plexus": {
+            "count": 1,
+            "quotes": [
+              "The heaviness gets more intense, and my stomach starts to knot up."
+            ]
+          },
+          "abdomen": {
+            "count": 0,
+            "quotes": []
+          },
+          "pelvis": {
+            "count": 0,
+            "quotes": []
+          },
+          "extremities": {
+            "count": 1,
+            "quotes": [
+              "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens."
+            ]
+          },
+          "whole_body": {
+            "count": 1,
+            "quotes": [
+              "Time slows down. It feels like I'm in this bubble where everything outside is paused."
+            ]
+          }
+        }
+      },
+      "phase4_invariants": {
+        "invariants": [
+          {
+            "name": "Physical Sensation of Weight",
+            "description": "A noticeable feeling of heaviness or pressure is present at the beginning of the experience.",
+            "evidence": [
+              "There's this heaviness in my chest",
+              "It's like a weight, a pressing down sensation."
+            ]
+          },
+          {
+            "name": "Cognitive Shift Moment",
+            "description": "The experience includes a definitive cognitive shift characterized by a decisive moment.",
+            "evidence": [
+              "I make the decision to quit. It's like a switch flips in my head."
+            ]
+          },
+          {
+            "name": "Altered Time Perception",
+            "description": "The perception of time becomes notably altered, often described as slowing down.",
+            "evidence": [
+              "Time slows down. It feels like I'm in this bubble where everything outside is paused."
+            ]
+          },
+          {
+            "name": "Emotional Release and Lightness",
+            "description": "The experience culminates in a release of tension and a sensation of lightness.",
+            "evidence": [
+              "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens."
+            ]
+          },
+          {
+            "name": "Self-Validation and Empowerment",
+            "description": "There is a reinforcement of self accompanied by feelings of empowerment and validation.",
+            "evidence": [
+              "I feel more solid, like I'm finally listening to myself.",
+              "Reinforcement of self through affirmative self-dialogue."
+            ]
+          }
+        ]
+      },
+      "phase5_visualizations": {
+        "mermaid_diagram": "graph TD\n    A[Initiation] --> B[Recalling the Setting]\n    B --> C[Building Tension]\n    C --> D[Moment of Decision]\n    D --> E[Release and Altered Perception]\n    E --> F[Empowerment and Reflection]\n    F --> G[Closure]",
+        "heatmap_data": {
+          "synchronic_configurations": [
+            {
+              "phase_name": "Initiation",
+              "active_dimensions": {
+                "Intentional": {
+                  "intensity": 7,
+                  "description": "Heightened environmental perception"
+                }
+              }
+            },
+            {
+              "phase_name": "Recalling the Setting",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 8,
+                  "description": "Heaviness and weight sensation in chest"
+                },
+                "Affective": {
+                  "intensity": 6,
+                  "description": "Mild confusion"
+                }
+              }
+            },
+            {
+              "phase_name": "Building Tension",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 7,
+                  "description": "Tightness in the stomach"
+                },
+                "Affective": {
+                  "intensity": 8,
+                  "description": "Intense emotional confusion and distress"
+                }
+              }
+            },
+            {
+              "phase_name": "Moment of Decision",
+              "active_dimensions": {
+                "Cognitiva": {
+                  "intensity": 9,
+                  "description": "Decisive cognitive shift"
+                },
+                "Affective": {
+                  "intensity": 7,
+                  "description": "Mixture of emotions with empowerment"
+                }
+              }
+            },
+            {
+              "phase_name": "Release and Altered Perception",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 6,
+                  "description": "Lightness and relaxation"
+                },
+                "Temporal": {
+                  "intensity": 7,
+                  "description": "Altered time perception"
+                }
+              }
+            },
+            {
+              "phase_name": "Empowerment and Reflection",
+              "active_dimensions": {
+                "Cognitiva": {
+                  "intensity": 7,
+                  "description": "Positive self-dialogue"
+                },
+                "Self (Ipseity)": {
+                  "intensity": 8,
+                  "description": "Empowering self-validation"
+                }
+              }
+            },
+            {
+              "phase_name": "Closure",
+              "active_dimensions": {
+                "Intentional": {
+                  "intensity": 6,
+                  "description": "Reflective attention on self"
+                },
+                "Self (Ipseity)": {
+                  "intensity": 9,
+                  "description": "Pride and self-acknowledgment"
+                }
+              }
+            }
+          ],
+          "body_map_data": {
+            "head": {
+              "count": 2,
+              "quotes": [
+                "I make the decision to quit. It's like a switch flips in my head.",
+                "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens."
+              ]
+            },
+            "chest": {
+              "count": 3,
+              "quotes": [
+                "There's this heaviness in my chest",
+                "It's like a weight, a pressing down sensation.",
+                "The heaviness gets more intense, and my stomach starts to knot up."
+              ]
+            },
+            "solar_plexus": {
+              "count": 1,
+              "quotes": [
+                "The heaviness gets more intense, and my stomach starts to knot up."
+              ]
+            },
+            "abdomen": {
+              "count": 0,
+              "quotes": []
+            },
+            "pelvis": {
+              "count": 0,
+              "quotes": []
+            },
+            "extremities": {
+              "count": 1,
+              "quotes": [
+                "Suddenly, the heaviness lifts a bit, and my grip on the mug loosens."
+              ]
+            },
+            "whole_body": {
+              "count": 1,
+              "quotes": [
+                "Time slows down. It feels like I'm in this bubble where everything outside is paused."
+              ]
+            }
+          }
+        },
+        "timeline_data": {
+          "phases": [
+            {
+              "phase_name": "Initiation",
+              "temporal_segment": "0-30s",
+              "description": "The participant is introduced to the process and asked to recall a significant decision-making moment.",
+              "dominant_codes": [
+                "Immersion Degree"
+              ]
+            },
+            {
+              "phase_name": "Recalling the Setting",
+              "temporal_segment": "30s-1m",
+              "description": "The participant describes the setting, where they are in the kitchen, holding a mug with a sense of heaviness.",
+              "dominant_codes": [
+                "2.4.1",
+                "2.4.4"
+              ]
+            },
+            {
+              "phase_name": "Building Tension",
+              "temporal_segment": "1m-1m30s",
+              "description": "The participant reflects on their job situation, feeling confusion and a mix of emotions, leading to physical tension.",
+              "dominant_codes": [
+                "2.1.10",
+                "2.1.11"
+              ]
+            },
+            {
+              "phase_name": "Moment of Decision",
+              "temporal_segment": "1m30s-2m",
+              "description": "The participant makes the decision to quit, experiences a cognitive shift represented by a 'switch' in their head.",
+              "dominant_codes": [
+                "4.2",
+                "6.4"
+              ]
+            },
+            {
+              "phase_name": "Release and Altered Perception",
+              "temporal_segment": "2m-2m30s",
+              "description": "The participant feels a lightness as tension releases, accompanied by changes in perception and empowerment.",
+              "dominant_codes": [
+                "2.4.6",
+                "Empowered-Self",
+                "Immersion Degree"
+              ]
+            },
+            {
+              "phase_name": "Empowerment and Reflection",
+              "temporal_segment": "2m30s-3m",
+              "description": "The participant reinforces their identity with positive self-dialogue and reflects on their decision.",
+              "dominant_codes": [
+                "3.3",
+                "Empowered-Self"
+              ]
+            },
+            {
+              "phase_name": "Closure",
+              "temporal_segment": "3m-end",
+              "description": "The participant reflects on the significance of the decision, feeling proud and acknowledging the importance of listening to their body.",
+              "dominant_codes": [
+                "Immersion Degree",
+                "Empowered-Self"
+              ]
+            }
+          ]
+        }
+      },
+      "phase6_integration": {
+        "interpretative_text": "# Results and Discussion\n\n## Phenomenological Summary\nThe participant's experience unfolds through a complex interplay of emotional, cognitive, and physical dimensions over a brief temporal trajectory. Initially, the participant engages deeply with their environment, as indicated by heightened environmental perception and a consequential sense of immersion. Entering the 'Recalling the Setting' phase, they report feelings of heaviness and mild confusion, creating a corporeal and affective tension. This escalates during the 'Building Tension' phase, where the participant's introspection into their job situation heightens emotional confusion and a physical sensation of tightness.\n\nAt the 'Moment of Decision,' a pivotal cognitive shift occurs, described as a 'switch' in the participant's head, marking a transition from distress to empowerment. This decision leads to an immediate release of tension as the participant feels a lightness, indicative of a change in corporeal and affective states. In the final phases, 'Empowerment and Reflection' and 'Closure,' the participant experiences positive self-dialogue and pride, reinforcing their self-identity and highlighting the importance of listening to one's body.\n\n## Theoretical Implications\nThe study's findings align closely with the Extended Phenomenological Map's dimensions, particularly illustrating the dynamics and transformations within corporeality, intentionality, temporal perception, and emotional affectivity. The participant's experience underscores corporeality, transitioning from heaviness to relaxation, while intentional dimensions register as attentiveness shifts from external to self-focused. Additionally, the pronounced cognitive shift aligns closely with elevated cognitive intensity, demonstrating the importance of embodied decision-making processes. Lastly, altered temporality, perceived as time slowing, emphasizes the subjective nature of time during critical decision-making events.\n\n## Clinical/Practical Relevance\nThese insights are significant for therapeutic settings, where understanding the interplay between cognitive, affective, and corporeal dimensions can enhance strategies for dealing with emotional decision-making processes. Recognizing similar body sensations as indicators of pivotal cognitive shifts can aid individuals in therapy to identify and navigate crucial emotional decisions, potentially fostering empowerment and self-validation.\n\n## Limitations & Future Directions\nThis research provides a single, detailed perspective of the decision-making experience, which may not universally apply across varying situations or cultural backgrounds. Additionally, the focus is on the individual experiential level, suggesting potential bias from personal interpretations. Future research should consider diverse populations and contexts to broaden understanding. Further exploration into other phenomenological dimensions and their interplay could enhance the application of findings within therapeutic or other practical settings."
+      }
+    }
+  },
+  {
+    "filename": "formatted_interview_P03.txt",
+    "result": {
+      "phase1_codes": {
+        "codes": [
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Sensations Corporales",
+            "sub_category": "Presi\u00f3n",
+            "code": "2.4.1 Presi\u00f3n",
+            "verbatim": "It was like... my chest was being squeezed.",
+            "description": "Participant describes a sensation of pressure in the chest."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Corporeality",
+            "category": "Localizaci\u00f3n Corporal",
+            "sub_category": "Pecho",
+            "code": "2.6.3 Pecho",
+            "verbatim": "It started in my chest, a tightness, like a knot.",
+            "description": "Tightness and pressure located in the chest."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Cualidad Afectiva",
+            "category": "Intensidad de la Cualidad Afectiva",
+            "sub_category": "Ansiedad",
+            "code": "2.1.10 Ansiedad",
+            "verbatim": "I was scared I was going to suffocate.",
+            "description": "High level of anxiety due to fear of suffocation."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Cualidades Cognitivas",
+            "category": "Percepci\u00f3n de Tiempo Alterada",
+            "sub_category": "Percibido como Eterno",
+            "code": "6.4 Percepci\u00f3n de tiempo alterada",
+            "verbatim": "Time felt... slowed down. Everything was happening so fast, but it felt like I was stuck in that moment forever.",
+            "description": "Time perception was altered, felt prolonged and as if stuck."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Emergencia Corporizada",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "Temblor",
+            "code": "2.4.12 Temblor",
+            "verbatim": "My hands were trembling,",
+            "description": "Physical sensation of trembling in hands."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Sensaciones Corporales",
+            "category": "Sensaci\u00f3n Corporales",
+            "sub_category": "Frio",
+            "code": "2.4.7 Calor",
+            "verbatim": "a cold rush starting from my back going all the way to my arms.",
+            "description": "Cold sensation spreading through the body."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Estrat\u00e9gias de Regulaci\u00f3n",
+            "category": "Autodi\u00e1logo",
+            "sub_category": "Autodi\u00e1logo amable",
+            "code": "3.3 Autodi\u00e1logo amable",
+            "verbatim": "I tried focusing on objects around me, naming them in my mind to ground myself.",
+            "description": "Strategy of self-dialogue through focusing and naming objects to ground oneself."
+          },
+          {
+            "type": "EMERGENT",
+            "dimension": "Self (Ipseity)",
+            "category": "Alteraciones del Yo",
+            "sub_category": "Despersonalizaci\u00f3n",
+            "code": "Self-Despersonalizaci\u00f3n",
+            "verbatim": "I felt detached, like I was watching myself from outside my body.",
+            "description": "Experience of detachment and observing self from outside."
+          },
+          {
+            "type": "FIXED",
+            "dimension": "Agencia Corporizada",
+            "category": "Sensaciones Corporales",
+            "sub_category": "Liviandad",
+            "code": "2.4.6 Liviandad",
+            "verbatim": "It was intense to relive it, but talking about it, breaking it down... it's therapeutic in a way. I feel a bit lighter.",
+            "description": "The participant feels lighter after discussing the experience."
+          }
+        ]
+      },
+      "phase2_diachronic": {
+        "phases": [
+          {
+            "phase_name": "Initiation",
+            "temporal_segment": "0-30s",
+            "description": "The participant begins to feel tightness and pressure in the chest, indicating the onset of anxiety.",
+            "dominant_codes": [
+              "2.6.3 Pecho",
+              "2.4.1 Presi\u00f3n"
+            ]
+          },
+          {
+            "phase_name": "Escalation",
+            "temporal_segment": "30-60s",
+            "description": "The anxiety intensifies as the participant struggles to breathe and experiences fear of suffocation.",
+            "dominant_codes": [
+              "2.1.10 Ansiedad",
+              "2.4.12 Temblor",
+              "2.4.7 Calor"
+            ]
+          },
+          {
+            "phase_name": "Climax",
+            "temporal_segment": "60-90s",
+            "description": "The sensation of trembling and cold rush leads to altered perception of time and self-detachment.",
+            "dominant_codes": [
+              "6.4 Percepci\u00f3n de tiempo alterada",
+              "Self-Despersonalizaci\u00f3n"
+            ]
+          },
+          {
+            "phase_name": "Resolution",
+            "temporal_segment": "90-120s",
+            "description": "The participant employs grounding strategies and begins to regain control over their physical sensations and emotions.",
+            "dominant_codes": [
+              "3.3 Autodi\u00e1logo amable",
+              "2.4.6 Liviandad"
+            ]
+          },
+          {
+            "phase_name": "Reflection",
+            "temporal_segment": "120s+",
+            "description": "Upon reflection, the participant perceives a deeper connection between mind and body, feeling lighter after sharing the experience.",
+            "dominant_codes": [
+              "2.4.6 Liviandad"
+            ]
+          }
+        ]
+      },
+      "phase3_synchronic": {
+        "synchronic_configurations": [
+          {
+            "phase_name": "Initiation",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 8,
+                "description": "High chest tension"
+              },
+              "Affective": {
+                "intensity": 7,
+                "description": "Onset of anxiety"
+              },
+              "Temporal": {
+                "intensity": 5,
+                "description": "Normal time perception"
+              }
+            }
+          },
+          {
+            "phase_name": "Escalation",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 9,
+                "description": "Increased bodily sensations"
+              },
+              "Affective": {
+                "intensity": 9,
+                "description": "Intense anxiety and fear"
+              },
+              "Temporal": {
+                "intensity": 6,
+                "description": "Slightly altered time perception"
+              }
+            }
+          },
+          {
+            "phase_name": "Climax",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 8,
+                "description": "Trembling and cold sensations"
+              },
+              "Cognitive": {
+                "intensity": 9,
+                "description": "Altered self-perception and time"
+              }
+            }
+          },
+          {
+            "phase_name": "Resolution",
+            "active_dimensions": {
+              "Affective": {
+                "intensity": 5,
+                "description": "Calmness starting to return"
+              },
+              "Cognitive": {
+                "intensity": 6,
+                "description": "Regaining control"
+              }
+            }
+          },
+          {
+            "phase_name": "Reflection",
+            "active_dimensions": {
+              "Corporeality": {
+                "intensity": 4,
+                "description": "Feeling lighter"
+              },
+              "Affective": {
+                "intensity": 4,
+                "description": "Connection between mind and body"
+              }
+            }
+          }
+        ],
+        "body_map_data": {
+          "head": {
+            "count": 0,
+            "quotes": []
+          },
+          "chest": {
+            "count": 2,
+            "quotes": [
+              "It was like... my chest was being squeezed.",
+              "It started in my chest, a tightness, like a knot."
+            ]
+          },
+          "solar_plexus": {
+            "count": 0,
+            "quotes": []
+          },
+          "abdomen": {
+            "count": 0,
+            "quotes": []
+          },
+          "pelvis": {
+            "count": 0,
+            "quotes": []
+          },
+          "extremities": {
+            "count": 2,
+            "quotes": [
+              "My hands were trembling,",
+              "a cold rush starting from my back going all the way to my arms."
+            ]
+          },
+          "whole_body": {
+            "count": 1,
+            "quotes": [
+              "Time felt... slowed down. Everything was happening so fast, but it felt like I was stuck in that moment forever."
+            ]
+          }
+        }
+      },
+      "phase4_invariants": {
+        "invariants": [
+          {
+            "name": "Chest Pressure as Initial Sensation",
+            "description": "Experience always begins with a sensation of pressure or tightness in the chest.",
+            "evidence": [
+              "It was like... my chest was being squeezed.",
+              "It started in my chest, a tightness, like a knot."
+            ]
+          },
+          {
+            "name": "Anxiety Escalation",
+            "description": "The sensation of chest pressure leads to an escalation of anxiety.",
+            "evidence": [
+              "I was scared I was going to suffocate.",
+              "The anxiety intensifies as the participant struggles to breathe and experiences fear of suffocation."
+            ]
+          },
+          {
+            "name": "Altered Time Perception",
+            "description": "The escalation phase leads to a significant alteration in the perception of time.",
+            "evidence": [
+              "Time felt... slowed down. Everything was happening so fast, but it felt like I was stuck in that moment forever."
+            ]
+          },
+          {
+            "name": "Self-Detachment",
+            "description": "There is a recurring theme of self-detachment or depersonalization during peak experiences.",
+            "evidence": [
+              "I felt detached, like I was watching myself from outside my body."
+            ]
+          },
+          {
+            "name": "Somatic Release",
+            "description": "The resolution includes a feeling of lightness after discussing or reflecting on the experience.",
+            "evidence": [
+              "It was intense to relive it, but talking about it, breaking it down... it's therapeutic in a way. I feel a bit lighter."
+            ]
+          }
+        ]
+      },
+      "phase5_visualizations": {
+        "mermaid_diagram": "graph TD\n    A[Initiation 0-30s] --> B[Escalation 30-60s]\n    B --> C[Climax 60-90s]\n    C --> D[Resolution 90-120s]\n    D --> E[Reflection 120s+]",
+        "heatmap_data": {
+          "synchronic_configurations": [
+            {
+              "phase_name": "Initiation",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 8,
+                  "description": "High chest tension"
+                },
+                "Affective": {
+                  "intensity": 7,
+                  "description": "Onset of anxiety"
+                },
+                "Temporal": {
+                  "intensity": 5,
+                  "description": "Normal time perception"
+                }
+              }
+            },
+            {
+              "phase_name": "Escalation",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 9,
+                  "description": "Increased bodily sensations"
+                },
+                "Affective": {
+                  "intensity": 9,
+                  "description": "Intense anxiety and fear"
+                },
+                "Temporal": {
+                  "intensity": 6,
+                  "description": "Slightly altered time perception"
+                }
+              }
+            },
+            {
+              "phase_name": "Climax",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 8,
+                  "description": "Trembling and cold sensations"
+                },
+                "Cognitive": {
+                  "intensity": 9,
+                  "description": "Altered self-perception and time"
+                }
+              }
+            },
+            {
+              "phase_name": "Resolution",
+              "active_dimensions": {
+                "Affective": {
+                  "intensity": 5,
+                  "description": "Calmness starting to return"
+                },
+                "Cognitive": {
+                  "intensity": 6,
+                  "description": "Regaining control"
+                }
+              }
+            },
+            {
+              "phase_name": "Reflection",
+              "active_dimensions": {
+                "Corporeality": {
+                  "intensity": 4,
+                  "description": "Feeling lighter"
+                },
+                "Affective": {
+                  "intensity": 4,
+                  "description": "Connection between mind and body"
+                }
+              }
+            }
+          ],
+          "body_map_data": {
+            "head": {
+              "count": 0,
+              "quotes": []
+            },
+            "chest": {
+              "count": 2,
+              "quotes": [
+                "It was like... my chest was being squeezed.",
+                "It started in my chest, a tightness, like a knot."
+              ]
+            },
+            "solar_plexus": {
+              "count": 0,
+              "quotes": []
+            },
+            "abdomen": {
+              "count": 0,
+              "quotes": []
+            },
+            "pelvis": {
+              "count": 0,
+              "quotes": []
+            },
+            "extremities": {
+              "count": 2,
+              "quotes": [
+                "My hands were trembling,",
+                "a cold rush starting from my back going all the way to my arms."
+              ]
+            },
+            "whole_body": {
+              "count": 1,
+              "quotes": [
+                "Time felt... slowed down. Everything was happening so fast, but it felt like I was stuck in that moment forever."
+              ]
+            }
+          }
+        },
+        "timeline_data": {
+          "phases": [
+            {
+              "phase_name": "Initiation",
+              "temporal_segment": "0-30s",
+              "description": "The participant begins to feel tightness and pressure in the chest, indicating the onset of anxiety.",
+              "dominant_codes": [
+                "2.6.3 Pecho",
+                "2.4.1 Presi\u00f3n"
+              ]
+            },
+            {
+              "phase_name": "Escalation",
+              "temporal_segment": "30-60s",
+              "description": "The anxiety intensifies as the participant struggles to breathe and experiences fear of suffocation.",
+              "dominant_codes": [
+                "2.1.10 Ansiedad",
+                "2.4.12 Temblor",
+                "2.4.7 Calor"
+              ]
+            },
+            {
+              "phase_name": "Climax",
+              "temporal_segment": "60-90s",
+              "description": "The sensation of trembling and cold rush leads to altered perception of time and self-detachment.",
+              "dominant_codes": [
+                "6.4 Percepci\u00f3n de tiempo alterada",
+                "Self-Despersonalizaci\u00f3n"
+              ]
+            },
+            {
+              "phase_name": "Resolution",
+              "temporal_segment": "90-120s",
+              "description": "The participant employs grounding strategies and begins to regain control over their physical sensations and emotions.",
+              "dominant_codes": [
+                "3.3 Autodi\u00e1logo amable",
+                "2.4.6 Liviandad"
+              ]
+            },
+            {
+              "phase_name": "Reflection",
+              "temporal_segment": "120s+",
+              "description": "Upon reflection, the participant perceives a deeper connection between mind and body, feeling lighter after sharing the experience.",
+              "dominant_codes": [
+                "2.4.6 Liviandad"
+              ]
+            }
+          ]
+        }
+      },
+      "phase6_integration": {
+        "interpretative_text": "# Results and Discussion\n\n## Phenomenological Summary\nThe lived experience of anxiety as reported by participants unfolds in a sequential manner categorized into five phases: Initiation, Escalation, Climax, Resolution, and Reflection. Initially, during the Initiation phase, individuals report a sensation of tightness and pressure in the chest, marking the initial onset of anxiety. This experience of corporeal discomfort is captured by codes such as \"2.6.3 Pecho\" and \"2.4.1 Presi\u00f3n,\" emphasizing the thematic presence of bodily tension.\n\nAs the experience progresses to the Escalation phase, a heightened sense of anxiety is felt, characterized by struggles in breathing and fear of suffocation, with dominant expressions of \"2.1.10 Ansiedad\" and somatic symptoms like \"2.4.12 Temblor.\" During this period, temporal perception begins to shift slightly, indicative of the intensifying emotional state.\n\nThe Climax of the experience reveals profound changes in temporal and self-perception, with sensations of trembling and cold physical manifestations contributing to feelings of altered reality and self-detachment. In this phase, participants experience what they describe as \"Self-Despersonalizaci\u00f3n\" and \"6.4 Percepci\u00f3n de tiempo alterada.\"\n\nIn the Resolution phase, grounding strategies aid in regaining control over emotions and physical sensations, indicating a reduction in affective intensity and the emergence of cognitive strategies characterized by \"3.3 Autodi\u00e1logo amable\" and \"2.4.6 Liviandad.\" \n\nFinally, in the Reflection phase, a deeper understanding between mind and body is acknowledged, leaving participants with a lasting sense of lightness after sharing their experiences.\n\n## Theoretical Implications\nThe findings suggest strong interactions between the dimensions of corporeality and affective states, with initial high intensities of bodily tension in the chest correlating with the onset and escalation of anxiety. Temporal distortions during the Climax highlight significant cognitive-affective interactions, where intense emotional states warp time perception, aligning with the \"Altered Time Perception\" invariant.\n\nFurthermore, the dynamics of self-detachment observed during peak anxiety experiences lend support to theories of depersonalization as a defense mechanism during overwhelming affective experiences. The narrative structure and dominant codes portray a phenomenon in harmony with established phenomenological frameworks, wherein corporal experiences fundamentally influence affective and temporal experiences.\n\n## Clinical/Practical Relevance\nUnderstanding the diachronic flow of anxiety experiences provides vital insights for clinicians. The early identification of bodily sensations as precursors to anxiety escalation presents opportunities for interventional grounding strategies to prevent the progression to Climax or depersonalization stages. By enhancing the client's bodily awareness and fostering reflective practices, as observed in the Reflection phase, therapists can aid in transforming anxiety experiences into positive somatic releases.\n\n## Limitations & Future Directions\nWhile the study offers valuable insights into the phenomenological structure of anxiety, it is limited by its reliance on subjective narratives, which might lack generalizability. Future research could explore longitudinal studies involving diverse populations to elucidate the nuances of anxiety experiences further. Additionally, integrating psychophysiological measures to correlate subjective reports with objective markers could enrich the understanding of phenomenological dynamics."
+      }
+    }
+  }
+]
