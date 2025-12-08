@@ -49,3 +49,8 @@ htmlcov/
 # Data (opcional - descomenta si no quieres versionar datos)
 # data/simulated_interviews/*.txt
 .next/
+node_modules/
+.next/
+.env
+__pycache__/
+*.pyc

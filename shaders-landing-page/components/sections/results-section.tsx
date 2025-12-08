@@ -22,8 +22,8 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                 <button
                     onClick={() => setActiveTab("codes")}
                     className={`flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === "codes"
-                            ? "bg-[#e19136] text-white shadow-lg"
-                            : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
+                        ? "bg-[#e19136] text-white shadow-lg"
+                        : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
                         }`}
                 >
                     <Table className="w-4 h-4" />
@@ -32,8 +32,8 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                 <button
                     onClick={() => setActiveTab("visuals")}
                     className={`flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === "visuals"
-                            ? "bg-[#e19136] text-white shadow-lg"
-                            : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
+                        ? "bg-[#e19136] text-white shadow-lg"
+                        : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
                         }`}
                 >
                     <Activity className="w-4 h-4" />
@@ -42,8 +42,8 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                 <button
                     onClick={() => setActiveTab("synthesis")}
                     className={`flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === "synthesis"
-                            ? "bg-[#e19136] text-white shadow-lg"
-                            : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
+                        ? "bg-[#e19136] text-white shadow-lg"
+                        : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
                         }`}
                 >
                     <FileText className="w-4 h-4" />
@@ -227,7 +227,7 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     return (
         <section
             ref={ref}
-            className="flex min-h-screen w-screen shrink-0 flex-col justify-start px-6 md:px-12 pt-24 overflow-y-auto bg-background"
+            className="flex min-h-screen w-screen shrink-0 flex-col justify-start px-6 md:px-12 pt-24 overflow-y-auto"
         >
             <div className="max-w-7xl mx-auto w-full pb-24">
                 <h2 className={`mb-8 text-4xl font-light text-foreground transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
