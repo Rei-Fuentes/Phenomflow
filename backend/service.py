@@ -35,7 +35,7 @@ if USE_CLAUDE:
     try:
         import anthropic
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        MODEL = "claude-sonnet-4-20250514"
+        MODEL = "claude-3-5-sonnet-latest"
         print("✓ Usando Claude Sonnet 4.5 (recomendado para v3.0)")
     except Exception as e:
         print(f"⚠ Claude no disponible ({e}), usando OpenAI como fallback")
