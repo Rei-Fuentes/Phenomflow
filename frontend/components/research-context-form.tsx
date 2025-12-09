@@ -47,7 +47,7 @@ export function ResearchContextForm({ onSubmit }: ResearchContextFormProps) {
     return (
         <div className="w-full max-w-2xl mx-auto bg-foreground/5 p-8 rounded-lg border border-foreground/10">
             <div className="mb-8 flex justify-between items-center">
-                <h3 className="text-xl font-light text-foreground">Phase 0: Research Context</h3>
+                <h3 className="text-xl font-light text-foreground">Research Context</h3>
                 <span className="text-xs font-mono text-foreground/40">Step {step} of 3</span>
             </div>
 
@@ -138,13 +138,19 @@ export function ResearchContextForm({ onSubmit }: ResearchContextFormProps) {
                         <label className="block text-sm font-mono text-foreground/70 mb-2">
                             Interview Type
                         </label>
-                        <input
+                        <select
                             name="interview_type"
                             value={formData.interview_type}
                             onChange={handleChange}
-                            placeholder="e.g., Semi-structured, Open-ended, Elicitation interview"
                             className="w-full p-3 bg-foreground/5 border border-foreground/10 rounded focus:outline-none focus:border-foreground/30 text-sm"
-                        />
+                        >
+                            <option value="">Select interview type...</option>
+                            <option value="Semi-structured">Semi-structured</option>
+                            <option value="Open-ended">Open-ended</option>
+                            <option value="Elicitation interview">Elicitation interview</option>
+                            <option value="Micro-phenomenological">Micro-phenomenological</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div>
                         <label className="block text-sm font-mono text-foreground/70 mb-2">
@@ -200,9 +206,6 @@ export function ResearchContextForm({ onSubmit }: ResearchContextFormProps) {
                         </select>
                     </div>
 
-                    <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded text-xs text-yellow-200/80 mt-4">
-                        ℹ️ This context will be used to tailor the AI analysis to your specific research goals.
-                    </div>
 
                     <div className="flex justify-between pt-4">
                         <MagneticButton size="sm" variant="secondary" onClick={handleBack}>
@@ -213,7 +216,8 @@ export function ResearchContextForm({ onSubmit }: ResearchContextFormProps) {
                         </MagneticButton>
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
