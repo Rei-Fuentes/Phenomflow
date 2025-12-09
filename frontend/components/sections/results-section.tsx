@@ -59,11 +59,32 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     )
 
     const renderRawData = () => {
+        // Helper function to parse markdown table
+        const parseMarkdownTable = (markdown: string) => {
+            if (!markdown) return null
+
+            const lines = markdown.trim().split('\n').filter(line => line.trim())
+            if (lines.length < 3) return null // Need at least header, separator, and one row
+
+            // Extract header
+            const headerLine = lines[0]
+            const headers = headerLine.split('|').map(h => h.trim()).filter(h => h)
+
+            // Extract rows (skip separator line at index 1)
+            const rows = lines.slice(2).map(line => {
+                return line.split('|').map(cell => cell.trim()).filter(cell => cell)
+            })
+
+            return { headers, rows }
+        }
+
+        const tableData = result?.markdown_table ? parseMarkdownTable(result.markdown_table) : null
+
         return (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <h3 className="text-2xl font-light mb-6 text-foreground">Analysis Results</h3>
                 <div className="bg-foreground/5 rounded-lg border border-foreground/10 p-6">
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         {/* Participant ID */}
                         {result?.participant_id && (
                             <div>
@@ -80,14 +101,33 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                             </div>
                         )}
 
-                        {/* Markdown Table */}
-                        {result?.markdown_table && (
+                        {/* Markdown Table - Parsed and Formatted */}
+                        {tableData && (
                             <div>
                                 <h4 className="text-sm font-mono text-foreground/60 mb-2">Analysis Table</h4>
                                 <div className="overflow-x-auto">
-                                    <pre className="text-xs font-mono text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded">
-                                        {result.markdown_table}
-                                    </pre>
+                                    <table className="w-full text-left border-collapse bg-foreground/5 rounded-lg">
+                                        <thead>
+                                            <tr className="border-b border-foreground/20">
+                                                {tableData.headers.map((header, i) => (
+                                                    <th key={i} className="p-3 font-mono text-xs text-foreground/80 uppercase tracking-wider bg-foreground/10">
+                                                        {header}
+                                                    </th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {tableData.rows.map((row, i) => (
+                                                <tr key={i} className="border-b border-foreground/10 hover:bg-foreground/5 transition-colors">
+                                                    {row.map((cell, j) => (
+                                                        <td key={j} className="p-3 text-sm text-foreground/90">
+                                                            {cell}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         )}
@@ -283,17 +323,54 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                     </div>
                 )}
 
-                {/* Markdown Table */}
-                {result?.markdown_table && (
-                    <div>
-                        <h3 className="text-2xl font-light mb-6 text-foreground">Analysis Table</h3>
-                        <div className="bg-foreground/5 p-6 rounded-lg border border-foreground/10 overflow-x-auto">
-                            <pre className="text-xs font-mono text-foreground/80 whitespace-pre-wrap">
-                                {result.markdown_table}
-                            </pre>
+                {/* Markdown Table - Parsed and Formatted */}
+                {result?.markdown_table && (() => {
+                    const parseMarkdownTable = (markdown: string) => {
+                        if (!markdown) return null
+                        const lines = markdown.trim().split('\n').filter(line => line.trim())
+                        if (lines.length < 3) return null
+                        const headerLine = lines[0]
+                        const headers = headerLine.split('|').map(h => h.trim()).filter(h => h)
+                        const rows = lines.slice(2).map(line => {
+                            return line.split('|').map(cell => cell.trim()).filter(cell => cell)
+                        })
+                        return { headers, rows }
+                    }
+
+                    const tableData = parseMarkdownTable(result.markdown_table)
+
+                    if (!tableData) return null
+
+                    return (
+                        <div>
+                            <h3 className="text-2xl font-light mb-6 text-foreground">Analysis Table</h3>
+                            <div className="overflow-x-auto bg-foreground/5 rounded-lg border border-foreground/10">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="border-b border-foreground/20 bg-foreground/10">
+                                            {tableData.headers.map((header, i) => (
+                                                <th key={i} className="p-3 font-mono text-xs text-foreground/80 uppercase tracking-wider">
+                                                    {header}
+                                                </th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {tableData.rows.map((row, i) => (
+                                            <tr key={i} className="border-b border-foreground/10 hover:bg-foreground/5 transition-colors">
+                                                {row.map((cell, j) => (
+                                                    <td key={j} className="p-3 text-sm text-foreground/90">
+                                                        {cell}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )
+                })()}
 
                 {/* Flow Diagram */}
                 {result?.phase5_visualizations?.mermaid_diagram && (
@@ -341,7 +418,8 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     return (
         <section
             ref={ref}
-            className="flex min-h-screen w-screen shrink-0 flex-col justify-start px-6 md:px-12 pt-24 overflow-y-auto"
+            className="flex min-h-screen w-screen shrink-0 flex-col justify-start px-6 md:px-12 pt-24"
+            style={{ overflowY: 'auto', overflowX: 'hidden' }}
         >
             <div className="max-w-7xl mx-auto w-full pb-24">
                 <h2 className={`mb-8 text-4xl font-light text-foreground transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
