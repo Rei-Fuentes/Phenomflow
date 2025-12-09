@@ -82,7 +82,7 @@ def load_prompt_parts():
     """
     Carga los 3 archivos de prompts v3.0 desde /prompts/ o define inline.
     """
-    prompts_dir = os.path.join(basedir, "prompts")
+    prompts_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompts")
     
     try:
         with open(f"{prompts_dir}/PHENOMFLOW_v3_PARTE_1_ANALISIS_INDIVIDUAL.txt", "r", encoding="utf-8") as f:
@@ -1364,7 +1364,200 @@ def parse_protocol_endpoint():
 # ENTRY POINT
 # =============================================================================
 
+
+
+# =============================================================================
+# DEMO ENDPOINT
+# =============================================================================
+
+@app.route('/demo/generate', methods=['POST'])
+def generate_demo():
+    """
+    Generate demo analysis from sample interviews.
+    Results are cached locally for presentation purposes.
+    """
+    import os
+    import json
+    from pathlib import Path
+    
+    try:
+        # Paths
+        demo_dir = Path(__file__).parent.parent / 'data' / 'demo'
+        interviews_dir = Path(__file__).parent.parent / 'data' / 'entrevistas_limpias'
+        protocol_path = interviews_dir / 'Protocolo_Entrevista_Microfenomenologica_LIMENS.docx'
+        result_path = demo_dir / 'analysis_result.json'
+        frontend_result_path = Path(__file__).parent.parent / 'frontend' / 'public' / 'demo' / 'demo_result.json'
+        
+        # Check if result already exists
+        if result_path.exists():
+            print("📦 Demo result already exists, loading from cache...")
+            with open(result_path, 'r', encoding='utf-8') as f:
+                cached_result = json.load(f)
+            return jsonify(cached_result), 200
+        
+        # Load context
+        context_path = demo_dir / 'context.json'
+        if not context_path.exists():
+            return jsonify({"error": "Demo context not found"}), 404
+            
+        with open(context_path, 'r', encoding='utf-8') as f:
+            context = json.load(f)
+        
+        print("\n🎬 Generating demo analysis...")
+        print(f"📋 Research: {context['research_question']}")
+        
+        # Load sample interviews
+        sample_files = context.get('sample_interviews', [])
+        combined_text = ""
+        
+        # If sample_interviews is "all", load all .docx files from directory
+        if sample_files == "all":
+            import glob
+            interview_pattern = str(interviews_dir / "*.docx")
+            all_files = glob.glob(interview_pattern)
+            # Exclude protocol file
+            sample_files = [
+                os.path.basename(f) for f in all_files 
+                if os.path.basename(f) != 'Protocolo_Entrevista_Microfenomenologica_LIMENS.docx'
+            ]
+            # Limit to 8 for demo stability (prevent OOM)
+            sample_files = sample_files[:8]
+            print(f"📚 Loading ALL {len(sample_files)} interviews from directory...")
+        
+        # BATCH PROCESSING LOGIC
+        # Process in chunks of 10 to prevent OOM
+        BATCH_SIZE = 10
+        raw_results = []
+        
+        total_files = len(sample_files)
+        for i in range(0, total_files, BATCH_SIZE):
+            batch_files = sample_files[i:i+BATCH_SIZE]
+            batch_num = (i // BATCH_SIZE) + 1
+            total_batches = (total_files + BATCH_SIZE - 1) // BATCH_SIZE
+            
+            print(f"\n📦 Processing Batch {batch_num}/{total_batches} ({len(batch_files)} files)...")
+            
+            batch_text = ""
+            for filename in batch_files:
+                file_path = interviews_dir / filename
+                if not file_path.exists(): continue
+                
+                try:
+                    import docx
+                    doc = docx.Document(file_path)
+                    file_text = "\n".join([para.text for para in doc.paragraphs])
+                    batch_text += f"\n{'='*80}\nINTERVIEW: {filename}\n{'='*80}\n\n{file_text}\n"
+                except Exception as e:
+                    print(f"❌ Error loading {filename}: {e}")
+            
+            if not batch_text.strip(): continue
+
+            # Analyze batch
+            print(f"🔬 Analyzing batch {batch_num}...")
+            batch_result = analyze_individual_interview(
+                batch_text,
+                participant_id=f"Demo-Batch-{batch_num}",
+                context=context,
+                protocol=protocol_dict
+            )
+            raw_results.append(batch_result)
+            print(f"✅ Batch {batch_num} complete")
+
+        # MERGE RESULTS
+        if not raw_results:
+            return jsonify({"error": "No results generated"}), 500
+
+        print("\n🔄 Merging results from all batches...")
+        final_result = raw_results[0] # Start with first batch as base
+        
+        # Helper to merge code lists
+        def merge_codes(target_list, source_list):
+            existing = {c['code'] if isinstance(c, dict) else c for c in target_list}
+            for item in source_list:
+                val = item['code'] if isinstance(item, dict) else item
+                if val not in existing:
+                    target_list.append(item)
+                    existing.add(val)
+        
+        # Merge subsequent batches
+        for res in raw_results[1:]:
+            # Merge codes
+            if 'phase1_codes' in res and 'codes' in res['phase1_codes']:
+                if 'phase1_codes' not in final_result: final_result['phase1_codes'] = {'codes': []}
+                merge_codes(final_result['phase1_codes']['codes'], res['phase1_codes']['codes'])
+            
+            # Merge stats
+            if 'dimensional_statistics' in res:
+                if 'dimensional_statistics' not in final_result: final_result['dimensional_statistics'] = {}
+                for dim, stat in res['dimensional_statistics'].items():
+                    if dim not in final_result['dimensional_statistics']:
+                        final_result['dimensional_statistics'][dim] = stat
+                    else:
+                        final_result['dimensional_statistics'][dim]['total_codes'] += stat.get('total_codes', 0)
+
+            # Update ID and stats
+            final_result['participant_id'] = "Full-Demo-Analysis (31 Interviews)"
+            
+        analysis_result = final_result
+        
+        # Prepare response
+        demo_result = {
+            "filename": "demo-analysis",
+            "analysis": analysis_result,
+            "context": context,
+            "generated_at": str(Path(__file__).parent),
+            "sample_count": len(sample_files)
+        }
+        
+        # Save to backend demo directory
+        demo_dir.mkdir(parents=True, exist_ok=True)
+        with open(result_path, 'w', encoding='utf-8') as f:
+            json.dump(demo_result, f, ensure_ascii=False, indent=2)
+        print(f"💾 Saved to {result_path}")
+        
+        # Save to frontend public directory
+        frontend_result_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(frontend_result_path, 'w', encoding='utf-8') as f:
+            json.dump(demo_result, f, ensure_ascii=False, indent=2)
+        print(f"💾 Saved to {frontend_result_path}")
+        
+        print("✅ Demo generation complete!")
+        
+        return jsonify(demo_result), 200
+        
+    except Exception as e:
+        print(f"❌ Error generating demo: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/demo/load', methods=['GET'])
+def load_demo():
+    """
+    Load cached demo results if available.
+    """
+    import json
+    from pathlib import Path
+    
+    try:
+        result_path = Path(__file__).parent.parent / 'data' / 'demo' / 'analysis_result.json'
+        
+        if not result_path.exists():
+            return jsonify({"error": "Demo not generated yet", "exists": False}), 404
+        
+        with open(result_path, 'r', encoding='utf-8') as f:
+            result = json.load(f)
+        
+        return jsonify(result), 200
+        
+    except Exception as e:
+        print(f"❌ Error loading demo: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
+
     # Si se ejecuta directamente, iniciar servidor Flask
     port = int(os.getenv("PORT", 8000))
     print(f"\n🚀 Starting PhenomFlow v3.0 API Server on port {port}...")

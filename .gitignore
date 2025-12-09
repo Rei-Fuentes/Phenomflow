@@ -70,3 +70,8 @@ node_modules/
 .env
 __pycache__/
 *.pyc
+
+# Demo data (local only, not for git)
+data/demo/
+data/entrevistas_limpias/
+frontend/public/demo/

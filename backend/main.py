@@ -245,3 +245,76 @@ def create_comparative_analysis(request: ComparativeRequest):
 @app.get("/analyses")
 def get_analyses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return db.query(Analysis).offset(skip).limit(limit).all()
+
+import glob
+
+@app.post("/demo/generate")
+def generate_demo_results():
+    """
+    Returns aggregated results from the batch processed interviews.
+    """
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(base_dir)
+        
+        # 1. Load Context
+        context_path = os.path.join(project_root, "data", "demo", "context.json")
+        context_data = {}
+        if os.path.exists(context_path):
+            with open(context_path, 'r') as f:
+                context_data = json.load(f)
+
+        # 2. Load Analysis Results
+        results_dir = os.path.join(project_root, "analysis_results")
+        analysis_files = glob.glob(os.path.join(results_dir, "*.json"))
+        
+        aggregated_codes = []
+        dim_stats = {}
+        processed_count = 0
+        
+        for file_path in analysis_files:
+            try:
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                    
+                    # Extract codes
+                    # Structure might vary slightly, usually data['codes'] or data['phase1_codes']['codes']
+                    codes = data.get('codes', [])
+                    if not codes and 'phase1_codes' in data:
+                        codes = data['phase1_codes'].get('codes', [])
+                        
+                    # Add participant ID to codes if missing
+                    pid = os.path.basename(file_path).replace('.json', '')
+                    for code in codes:
+                        code['participant_id'] = pid
+                        
+                    aggregated_codes.extend(codes)
+                    
+                    # Aggregate stats
+                    # data['dimensional_statistics']
+                    stats = data.get('dimensional_statistics', {})
+                    for dim, stat in stats.items():
+                        if dim not in dim_stats:
+                            dim_stats[dim] = {"total_codes": 0}
+                        dim_stats[dim]["total_codes"] += stat.get("total_codes", 0)
+                        
+                    processed_count += 1
+            except Exception as e:
+                print(f"Error reading {file_path}: {e}")
+
+        # Construct response
+        analysis_result = {
+            "participant_id": "BATCH_DEMO",
+            "phenomenon_nucleus": f"Batch analysis of {processed_count} interviews. Detailed codes are aggregated below.",
+            "codes": aggregated_codes,
+            "dimensional_statistics": dim_stats,
+            # Add other phases if we want valid demo data for them
+            "markdown_table": f"| Metric | Value |\n|---|---|\n| Processed Interviews | {processed_count} |\n| Total Codes | {len(aggregated_codes)} |"
+        }
+        
+        return {
+            "context": context_data,
+            "analysis": analysis_result
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

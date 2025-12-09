@@ -340,8 +340,35 @@ export default function Home() {
             <Globe size={16} />
             {lang.toUpperCase()}
           </button>
-          <MagneticButton variant="secondary" onClick={() => scrollToSection(2)}>
-            {t.nav.start}
+          <MagneticButton variant="secondary" onClick={async () => {
+            // Load demo
+            setIsAnalyzing(true)
+            try {
+              // Try to load from local cache first
+              const response = await fetch('/demo/demo_result.json')
+              if (response.ok) {
+                const data = await response.json()
+                setAnalysisResult(data.analysis)
+                setContextData(data.context)
+                scrollToSection(4)
+              } else {
+                // Generate demo from backend
+                const genResponse = await fetch('http://localhost:8000/demo/generate', {
+                  method: 'POST'
+                })
+                const data = await genResponse.json()
+                setAnalysisResult(data.analysis)
+                setContextData(data.context)
+                scrollToSection(4)
+              }
+            } catch (error) {
+              console.error('Demo error:', error)
+              alert('Error loading demo. Make sure backend is running.')
+            } finally {
+              setIsAnalyzing(false)
+            }
+          }}>
+            {isAnalyzing ? "Loading..." : "Demo"}
           </MagneticButton>
         </div>
       </nav>
