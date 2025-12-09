@@ -9,3 +9,5 @@ pypdf
 python-docx
 python-multipart
 anthropic
+flask
+flask-cors
