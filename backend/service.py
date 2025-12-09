@@ -18,10 +18,27 @@ import os
 import json
 import time
 import random
+import tempfile
 from datetime import datetime
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
+
+# Import transcription and protocol modules
+try:
+    from transcription import transcribe_audio, transcribe_multiple, save_transcription
+    WHISPER_AVAILABLE = True
+except ImportError:
+    WHISPER_AVAILABLE = False
+    print("⚠️ Whisper not available. Install with: pip install openai-whisper")
+
+try:
+    from protocol_parser import parse_protocol, format_protocol_for_prompt, get_protocol_summary
+    PROTOCOL_PARSER_AVAILABLE = True
+except ImportError:
+    PROTOCOL_PARSER_AVAILABLE = False
+    print("⚠️ Protocol parser not available")
 
 # Load environment variables from project root
 basedir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -558,18 +575,179 @@ def generate_body_maps(codebook: dict, clustering: dict) -> dict:
 
 
 # =============================================================================
+# CONTEXT AND PROTOCOL FORMATTING FUNCTIONS
+# =============================================================================
+
+def format_research_context(context: Dict) -> str:
+    """
+    Formatea el contexto de investigación para incluirlo en el prompt de análisis.
+    
+    Args:
+        context: Diccionario con research_question, study_objective, etc.
+    
+    Returns:
+        String formateado listo para incluir en el prompt
+    """
+    if not context:
+        return ""
+    
+    formatted = "\n" + "="*80 + "\n"
+    formatted += "CONTEXTO DE INVESTIGACIÓN\n"
+    formatted += "="*80 + "\n\n"
+    
+    if context.get("research_question"):
+        formatted += f"📋 PREGUNTA DE INVESTIGACIÓN:\n"
+        formatted += f"{context['research_question']}\n\n"
+    
+    if context.get("study_objective"):
+        formatted += f"🎯 OBJETIVO DEL ESTUDIO:\n"
+        formatted += f"{context['study_objective']}\n\n"
+    
+    if context.get("phenomenological_approach"):
+        approach = context['phenomenological_approach']
+        formatted += f"🔬 ENFOQUE FENOMENOLÓGICO: {approach}\n"
+        formatted += get_approach_instructions(approach) + "\n\n"
+    
+    if context.get("participant_context"):
+        formatted += f"👥 POBLACIÓN/CONTEXTO:\n"
+        formatted += f"{context['participant_context']}\n"
+        formatted += "→ INSTRUCCIÓN: Ten en cuenta las características específicas de esta población.\n\n"
+    
+    if context.get("interview_type"):
+        formatted += f"💬 TIPO DE ENTREVISTA: {context['interview_type']}\n\n"
+    
+    if context.get("interview_timing"):
+        timing = context['interview_timing']
+        formatted += f"⏰ TIMING: {timing}\n"
+        formatted += get_timing_instructions(timing) + "\n\n"
+    
+    formatted += "="*80 + "\n"
+    formatted += "⚠️ INSTRUCCIÓN CRÍTICA:\n"
+    formatted += "Todos los códigos y análisis deben ser RELEVANTES para la pregunta de investigación.\n"
+    formatted += "Aplica el enfoque fenomenológico especificado con RIGOR METODOLÓGICO.\n"
+    formatted += "="*80 + "\n\n"
+    
+    return formatted
+
+
+def get_approach_instructions(approach: str) -> str:
+    """
+    Retorna instrucciones específicas según el enfoque fenomenológico.
+    """
+    instructions = {
+        "Micro-phenomenology (Petitmengin)": """
+→ PRIORIDADES METODOLÓGICAS:
+  • Micro-gestos y sensaciones corporales sutiles
+  • Temporalidad fina (atención a cambios en milisegundos/segundos)
+  • Proceso de toma de conciencia (pre-reflexivo → reflexivo)
+  • Dimensión corporal y sensorial detallada
+  • Evocación guiada de la experiencia vivida""",
+        
+        "IPA (Interpretative Phenomenological Analysis)": """
+→ PRIORIDADES METODOLÓGICAS:
+  • Significados personales del participante
+  • Interpretaciones subjetivas de la experiencia
+  • Contexto biográfico y narrativo
+  • Temas idiográficos (únicos de este participante)
+  • Doble hermenéutica (interpretación de interpretaciones)""",
+        
+        "Descriptive Phenomenology (Husserl)": """
+→ PRIORIDADES METODOLÓGICAS:
+  • Descripción pura (epoché estricta, suspender juicios)
+  • Búsqueda de esencias invariantes
+  • Reducción fenomenológica rigurosa
+  • Estructuras universales de la experiencia
+  • Evitar interpretaciones psicológicas o causales""",
+        
+        "Existential Phenomenology (Heidegger/Merleau-Ponty)": """
+→ PRIORIDADES METODOLÓGICAS:
+  • Ser-en-el-mundo (experiencia situada)
+  • Corporalidad vivida (cuerpo fenomenal)
+  • Temporalidad existencial (pasado-presente-futuro vividos)
+  • Relación con otros y con el mundo
+  • Significados existenciales emergentes""",
+        
+        "Empirical Phenomenology": """
+→ PRIORIDADES METODOLÓGICAS:
+  • Rigor descriptivo empírico
+  • Estructuras experienciales verificables
+  • Sistematicidad en la codificación
+  • Balance entre descripción y análisis
+  • Validación intersubjetiva""",
+    }
+    
+    return instructions.get(approach, 
+        "→ INSTRUCCIÓN: Aplica rigor fenomenológico general con foco en la experiencia vivida.")
+
+
+def get_timing_instructions(timing: str) -> str:
+    """
+    Retorna instrucciones según el timing de la entrevista respecto al fenómeno.
+    """
+    instructions = {
+        "Immediate (during/right after)": """
+→ CONSIDERACIONES TEMPORALES:
+  • La experiencia es FRESCA: prioriza detalles sensoriales vívidos
+  • Emociones y sensaciones corporales aún presentes
+  • Menor elaboración narrativa, mayor inmediatez
+  • Posible falta de reflexión profunda (es normal)
+  • Alta validez fenomenológica de descripciones sensoriales""",
+        
+        "Recent (days after)": """
+→ CONSIDERACIONES TEMPORALES:
+  • Balance entre viveza y reflexión
+  • Detalles sensoriales aún accesibles pero con cierta elaboración
+  • Emergencia de significados iniciales
+  • Narrativa más coherente que en entrevista inmediata
+  • Validez alta para estructura experiencial""",
+        
+        "Retrospective (long term)": """
+→ CONSIDERACIONES TEMPORALES:
+  • Experiencia reconstruida desde el presente
+  • Significados consolidados y elaborados
+  • Narrativa biográfica más desarrollada
+  • Posible distorsión por memoria (considerar)
+  • Enfócate en significados y temas, no en detalles sensoriales exactos""",
+    }
+    
+    return instructions.get(timing, "")
+
+
+# =============================================================================
 # FUNCIONES PRINCIPALES DE ANÁLISIS (del código original)
 # =============================================================================
 
-def analyze_individual_interview(text: str, participant_id: str = "Pxx") -> Dict[str, Any]:
+def analyze_individual_interview(
+    text: str, 
+    participant_id: str = "Pxx",
+    context: Optional[Dict] = None,
+    protocol: Optional[Dict] = None
+) -> Dict[str, Any]:
     """
     FASE 1: Análisis individual con prompt v3.0 completo.
+    
+    Args:
+        text: Transcripción de la entrevista
+        participant_id: ID del participante
+        context: Contexto de investigación (research_question, study_objective, etc.)
+        protocol: Protocolo parseado (questions, themes, etc.)
+    
+    Returns:
+        Diccionario con el análisis completo
     """
     
     print(f"\n🔍 Analizando {participant_id}...")
     
+    # Formatear contexto de investigación
+    context_section = format_research_context(context) if context else ""
+    
+    # Formatear protocolo de entrevista
+    protocol_section = ""
+    if protocol and PROTOCOL_PARSER_AVAILABLE:
+        protocol_section = format_protocol_for_prompt(protocol)
+    
     # Construir prompt completo
-    full_prompt = f"""{PROMPT_PARTE_1}
+    full_prompt = f"""{context_section}{protocol_section}{PROMPT_PARTE_1}
 
 ================================================================================
 ANÁLISIS DE PARTICIPANTE {participant_id}
@@ -793,6 +971,7 @@ def analyze_enhanced():
         
         text = data['text']
         context = data.get('context', None)
+        protocol = data.get('protocol', None)  # Protocolo parseado del frontend
         
         # Validar que hay contenido
         if not text.strip():
@@ -802,15 +981,16 @@ def analyze_enhanced():
         print(f"📄 Text length: {len(text)} characters")
         if context:
             print(f"🎯 Research context: {context.get('phenomenological_approach', 'N/A')}")
+        if protocol:
+            print(f"📋 Protocol: {protocol.get('total_questions', 0)} questions detected")
         
-        # INTEGRAR CONTEXTO EN PROMPTS
-        prompt_part1 = PROMPT_PARTE_1
-        if context:
-            prompt_part1 = integrate_research_context(prompt_part1, context)
-        
-        # FASE 1: Análisis Individual (asumimos 1 participante por ahora)
-        # Si quieres analizar múltiples, necesitas parsear el texto
-        result = analyze_individual_interview(text, "P01")
+        # FASE 1: Análisis Individual con contexto y protocolo
+        result = analyze_individual_interview(
+            text, 
+            participant_id="P01",
+            context=context,
+            protocol=protocol
+        )
         
         # Para análisis completo cross-case necesitamos múltiples participantes
         # Por ahora, devolvemos estructura simulada
@@ -941,6 +1121,141 @@ def run_complete_pipeline(transcripts: List[Dict[str, str]],
 
 
 # =============================================================================
+# TRANSCRIPTION ENDPOINTS
+# =============================================================================
+
+@app.route("/transcribe", methods=["POST"])
+def transcribe_endpoint():
+    """
+    Transcribe audio files using Whisper local.
+    
+    Request:
+        - files: List of audio files
+        - language: Optional language code (default: 'es')
+        - model_size: Optional Whisper model size (default: 'base')
+    
+    Response:
+        {
+            "transcriptions": [
+                {
+                    "filename": str,
+                    "text": str,
+                    "duration": float,
+                    "language": str
+                },
+                ...
+            ]
+        }
+    """
+    if not WHISPER_AVAILABLE:
+        return jsonify({"error": "Whisper not available. Install with: pip install openai-whisper"}), 501
+    
+    if 'files' not in request.files:
+        return jsonify({"error": "No files provided"}), 400
+    
+    files = request.files.getlist('files')
+    language = request.form.get('language', 'es')
+    model_size = request.form.get('model_size', 'base')
+    
+    # Create temp directory
+    temp_dir = tempfile.mkdtemp(prefix="phenomflow_audio_")
+    
+    try:
+        transcriptions = []
+        audio_paths = []
+        
+        # Save files temporarily
+        for file in files:
+            filename = secure_filename(file.filename)
+            temp_path = os.path.join(temp_dir, filename)
+            file.save(temp_path)
+            audio_paths.append(temp_path)
+        
+        # Transcribe all files
+        results = transcribe_multiple(audio_paths, language, model_size)
+        
+        # Clean up temp files
+        for path in audio_paths:
+            if os.path.exists(path):
+                os.remove(path)
+        
+        os.rmdir(temp_dir)
+        
+        return jsonify({"transcriptions": results})
+    
+    except Exception as e:
+        # Clean up on error
+        for path in audio_paths:
+            if os.path.exists(path):
+                os.remove(path)
+        if os.path.exists(temp_dir):
+            os.rmdir(temp_dir)
+        
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/parse-protocol", methods=["POST"])
+def parse_protocol_endpoint():
+    """
+    Parse interview protocol to extract questions and structure.
+    
+    Request:
+        - file: Protocol file (PDF, DOCX, or TXT)
+        OR
+        - text: Protocol text directly
+    
+    Response:
+        {
+            "questions": [...],
+            "total_questions": int,
+            "themes": [...],
+            "summary": str
+        }
+    """
+    if not PROTOCOL_PARSER_AVAILABLE:
+        return jsonify({"error": "Protocol parser not available"}), 501
+    
+    try:
+        protocol_text = ""
+        
+        # Check if file was uploaded
+        if 'file' in request.files:
+            file = request.files['file']
+            filename = secure_filename(file.filename)
+            
+            # Read file content
+            if filename.endswith('.txt'):
+                protocol_text = file.read().decode('utf-8')
+            elif filename.endswith('.pdf'):
+                # Use pypdf to extract text
+                import pypdf
+                pdf_reader = pypdf.PdfReader(file)
+                protocol_text = "\n".join([page.extract_text() for page in pdf_reader.pages])
+            elif filename.endswith('.docx'):
+                # Use python-docx to extract text
+                import docx
+                doc = docx.Document(file)
+                protocol_text = "\n".join([para.text for para in doc.paragraphs])
+            else:
+                return jsonify({"error": "Unsupported file format. Use TXT, PDF, or DOCX"}), 400
+        
+        # Or check if text was provided directly
+        elif request.json and 'text' in request.json:
+            protocol_text = request.json['text']
+        else:
+            return jsonify({"error": "No file or text provided"}), 400
+        
+        # Parse protocol
+        parsed = parse_protocol(protocol_text)
+        parsed["summary"] = get_protocol_summary(parsed)
+        
+        return jsonify(parsed)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# =============================================================================
 # ENTRY POINT
 # =============================================================================
 
@@ -950,11 +1265,14 @@ if __name__ == "__main__":
     print(f"\n🚀 Starting PhenomFlow v3.0 API Server on port {port}...")
     print(f"📡 CORS enabled for: http://localhost:3000")
     print(f"🤖 Model: {MODEL}")
+    print(f"🎤 Whisper: {'✅ Available' if WHISPER_AVAILABLE else '❌ Not available'}")
     print(f"\n💡 Endpoints disponibles:")
     print(f"   GET  /health")
     print(f"   POST /analyze")
     print(f"   POST /analyze/enhanced")
     print(f"   POST /analyze/document")
+    print(f"   POST /transcribe")
+    print(f"   POST /parse-protocol")
     print(f"\n⏰ Server starting...\n")
     
     app.run(host='0.0.0.0', port=port, debug=True)

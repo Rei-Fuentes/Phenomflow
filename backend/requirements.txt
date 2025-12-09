@@ -11,3 +11,4 @@ python-multipart
 anthropic
 flask
 flask-cors
+openai-whisper
