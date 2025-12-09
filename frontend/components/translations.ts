@@ -22,8 +22,8 @@ export const translations = {
         index: {
             title: "Index",
             sections: [
-                { id: 2, title: "Phase 0: Context", desc: "Setup research parameters" },
-                { id: 3, title: "Materials", desc: "Upload and prepare data" },
+                { id: 2, title: "Context", desc: "Setup research parameters" },
+                { id: 3, title: "Materials", desc: "Upload transcripts and audio" },
                 { id: 4, title: "Results", desc: "Analysis and visualization" },
                 { id: 5, title: "Values", desc: "Our core principles" },
             ]
@@ -77,8 +77,8 @@ export const translations = {
         index: {
             title: "Índice",
             sections: [
-                { id: 2, title: "Fase 0: Contexto", desc: "Configuración de parámetros de investigación" },
-                { id: 3, title: "Materiales", desc: "Carga y preparación de datos" },
+                { id: 2, title: "Contexto", desc: "Configuración de parámetros de investigación" },
+                { id: 3, title: "Materiales", desc: "Sube transcripciones y audios" },
                 { id: 4, title: "Resultados", desc: "Análisis y visualización" },
                 { id: 5, title: "Valores", desc: "Nuestros principios fundamentales" },
             ]

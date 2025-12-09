@@ -29,7 +29,7 @@ export function IndexSection({ t, onNavigate }: IndexSectionProps) {
                             style={{ transitionDelay: `${i * 100}ms` }}
                         >
                             <div className="flex justify-between items-start mb-2">
-                                <span className="font-mono text-xs text-foreground/40">0{section.id}</span>
+                                <span className="font-mono text-xs text-foreground/40">0{section.id - 1}</span>
                                 <span className="text-foreground/40 group-hover:text-foreground transition-colors">→</span>
                             </div>
                             <h3 className="text-xl font-medium text-foreground mb-2">{section.title}</h3>
