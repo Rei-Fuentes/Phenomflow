@@ -9,6 +9,7 @@ interface MagneticButtonProps {
   variant?: "primary" | "secondary" | "ghost"
   size?: "default" | "lg" | "sm"
   onClick?: () => void
+  disabled?: boolean
 }
 
 export function MagneticButton({
