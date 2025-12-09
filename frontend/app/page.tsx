@@ -122,6 +122,9 @@ export default function Home() {
       }
 
       const data = await response.json()
+      console.log("📊 Analysis data received:", data)
+      console.log("📊 Data structure:", JSON.stringify(data, null, 2).substring(0, 500))
+
       setAnalysisResult(data.analysis || data)
 
       // Auto scroll to results
