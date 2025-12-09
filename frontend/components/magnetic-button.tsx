@@ -18,13 +18,14 @@ export function MagneticButton({
   variant = "primary",
   size = "default",
   onClick,
+  disabled = false,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null)
   const positionRef = useRef({ x: 0, y: 0 })
   const rafRef = useRef<number>()
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!ref.current) return
+    if (!ref.current || disabled) return
 
     const rect = ref.current.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
@@ -70,11 +71,13 @@ export function MagneticButton({
       onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      disabled={disabled}
       className={`
         relative overflow-hidden rounded-full font-medium
         transition-all duration-300 ease-out will-change-transform
         ${variants[variant]}
         ${sizes[size]}
+        ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
         ${className}
       `}
       style={{
