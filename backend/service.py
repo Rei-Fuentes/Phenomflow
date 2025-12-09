@@ -1076,10 +1076,115 @@ def analyze_enhanced():
 @app.route('/analyze/document', methods=['POST'])
 def analyze_document():
     """
-    Endpoint para analizar documentos cargados.
+    Endpoint para analizar múltiples documentos cargados (PDF/DOCX).
+    
+    Request:
+        - files: List of interview files (PDF/DOCX)
+        - protocol: Optional protocol file
+        - context: Optional JSON string with research context
+    
+    Response:
+        {
+            "filename": "multi-file-analysis",
+            "analysis": {...}
+        }
     """
-    # TODO: Implementar análisis de documentos PDF/DOCX
-    return jsonify({"error": "Not implemented yet"}), 501
+    try:
+        # Get uploaded files
+        files = request.files.getlist('files')
+        protocol_file = request.files.get('protocol')
+        context_str = request.form.get('context')
+        
+        if not files:
+            return jsonify({"error": "No files provided"}), 400
+        
+        combined_text = ""
+        
+        # Process protocol if provided
+        protocol_text = ""
+        if protocol_file:
+            try:
+                if protocol_file.filename.endswith('.pdf'):
+                    import pypdf
+                    pdf_reader = pypdf.PdfReader(protocol_file)
+                    for page in pdf_reader.pages:
+                        protocol_text += page.extract_text() + "\n"
+                elif protocol_file.filename.endswith('.docx'):
+                    import docx
+                    doc = docx.Document(protocol_file)
+                    for para in doc.paragraphs:
+                        protocol_text += para.text + "\n"
+                else:
+                    protocol_text = protocol_file.read().decode('utf-8')
+            except Exception as e:
+                print(f"⚠️ Error processing protocol: {e}")
+        
+        # Process interview files
+        for file in files:
+            try:
+                file_text = ""
+                if file.filename.endswith('.pdf'):
+                    import pypdf
+                    pdf_reader = pypdf.PdfReader(file)
+                    for page in pdf_reader.pages:
+                        file_text += page.extract_text() + "\n"
+                elif file.filename.endswith('.docx'):
+                    import docx
+                    doc = docx.Document(file)
+                    for para in doc.paragraphs:
+                        file_text += para.text + "\n"
+                else:
+                    file_text = file.read().decode('utf-8')
+                
+                combined_text += f"\n{'='*80}\nINTERVIEW: {file.filename}\n{'='*80}\n\n{file_text}\n"
+            except Exception as e:
+                print(f"⚠️ Error processing file {file.filename}: {e}")
+                continue
+        
+        if not combined_text.strip():
+            return jsonify({"error": "Could not extract text from files"}), 400
+        
+        # Parse context JSON
+        context_dict = {}
+        if context_str:
+            try:
+                context_dict = json.loads(context_str)
+                if protocol_text:
+                    # Parse protocol using protocol_parser if available
+                    if PROTOCOL_PARSER_AVAILABLE:
+                        from protocol_parser import parse_protocol
+                        protocol_dict = parse_protocol(protocol_text)
+                        context_dict["interview_protocol"] = protocol_dict
+                    else:
+                        context_dict["interview_protocol_text"] = protocol_text
+            except json.JSONDecodeError as e:
+                print(f"⚠️ Error parsing context JSON: {e}")
+        
+        print(f"\n📄 Processing {len(files)} files...")
+        print(f"📝 Total text length: {len(combined_text)} characters")
+        if context_dict:
+            print(f"🎯 Context: {context_dict.get('phenomenological_approach', 'N/A')}")
+        
+        # Analyze using the individual interview function
+        # For multiple files, we treat them as one combined interview for now
+        # In the future, we could analyze each separately and then synthesize
+        analysis_result = analyze_individual_interview(
+            combined_text,
+            participant_id="Multi-File",
+            context=context_dict,
+            protocol=context_dict.get("interview_protocol") if context_dict else None
+        )
+        
+        return jsonify({
+            "filename": "multi-file-analysis",
+            "analysis": analysis_result
+        }), 200
+    
+    except Exception as e:
+        print(f"❌ Error in analyze_document: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
 
 
 # =============================================================================
