@@ -52,6 +52,21 @@ export const translations = {
                 "Results: Explore the Diachronic Structure, Synchronic Heatmaps, and Invariants.",
                 "Integration: Review the academic-style discussion and export your data.",
             ]
+        },
+        transcription: {
+            title: "Audio Transcription",
+            dragDrop: "Drag & Drop Audio Files",
+            supportedFormats: "Supported: MP3, WAV, M4A, FLAC, OGG, AAC, WMA, WEBM",
+            browseFiles: "Browse Audio Files",
+            addMore: "Add more audio files",
+            audioFiles: "Audio Files",
+            downloadAll: "Download All",
+            transcribing: "Transcribing audio files...",
+            startTranscription: "Transcribe",
+            invalidFormat: "Some files were skipped. Only audio files are supported.",
+            downloadTxt: "Download TXT",
+            downloadPdf: "Download PDF",
+            downloadDocx: "Download DOCX",
         }
     },
     es: {
@@ -107,6 +122,21 @@ export const translations = {
                 "Resultados: Explora la Estructura Diacrónica, Heatmaps Sincrónicos e Invariantes.",
                 "Integración: Revisa la discusión estilo académico y exporta tus datos.",
             ]
+        },
+        transcription: {
+            title: "Transcripción de Audio",
+            dragDrop: "Arrastra y Suelta Archivos de Audio",
+            supportedFormats: "Soportados: MP3, WAV, M4A, FLAC, OGG, AAC, WMA, WEBM",
+            browseFiles: "Buscar Archivos de Audio",
+            addMore: "Agregar más archivos de audio",
+            audioFiles: "Archivos de Audio",
+            downloadAll: "Descargar Todos",
+            transcribing: "Transcribiendo archivos de audio...",
+            startTranscription: "Transcribir",
+            invalidFormat: "Algunos archivos fueron omitidos. Solo se soportan archivos de audio.",
+            downloadTxt: "Descargar TXT",
+            downloadPdf: "Descargar PDF",
+            downloadDocx: "Descargar DOCX",
         }
     }
 }
