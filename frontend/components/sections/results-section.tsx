@@ -16,6 +16,11 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     const { ref, isVisible } = useReveal(0.3)
     const [activeTab, setActiveTab] = useState<"codes" | "visuals" | "synthesis">("codes")
 
+    // Debug: log the result structure
+    if (result) {
+        console.log("🔍 ResultsSection received:", result)
+    }
+
     const renderTabs = () => (
         <div className="flex justify-center mb-12">
             <div className="flex bg-foreground/5 p-1 rounded-full backdrop-blur-sm border border-foreground/10">
@@ -53,8 +58,79 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
         </div>
     )
 
+    const renderRawData = () => {
+        return (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <h3 className="text-2xl font-light mb-6 text-foreground">Analysis Results</h3>
+                <div className="bg-foreground/5 rounded-lg border border-foreground/10 p-6">
+                    <div className="space-y-4">
+                        {/* Participant ID */}
+                        {result?.participant_id && (
+                            <div>
+                                <h4 className="text-sm font-mono text-foreground/60 mb-2">Participant ID</h4>
+                                <p className="text-foreground">{result.participant_id}</p>
+                            </div>
+                        )}
+
+                        {/* Phenomenon Nucleus */}
+                        {result?.phenomenon_nucleus && (
+                            <div>
+                                <h4 className="text-sm font-mono text-foreground/60 mb-2">Phenomenon Nucleus</h4>
+                                <p className="text-foreground/90 leading-relaxed">{result.phenomenon_nucleus}</p>
+                            </div>
+                        )}
+
+                        {/* Markdown Table */}
+                        {result?.markdown_table && (
+                            <div>
+                                <h4 className="text-sm font-mono text-foreground/60 mb-2">Analysis Table</h4>
+                                <div className="overflow-x-auto">
+                                    <pre className="text-xs font-mono text-foreground/80 whitespace-pre-wrap bg-black/20 p-4 rounded">
+                                        {result.markdown_table}
+                                    </pre>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Dimensional Statistics */}
+                        {result?.dimensional_statistics && (
+                            <div>
+                                <h4 className="text-sm font-mono text-foreground/60 mb-2">Dimensional Statistics</h4>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    {Object.entries(result.dimensional_statistics).map(([dim, stats]: [string, any]) => (
+                                        <div key={dim} className="bg-foreground/10 p-3 rounded">
+                                            <p className="text-xs font-mono text-foreground/60">{dim}</p>
+                                            <p className="text-lg font-bold text-[#e19136]">{stats.total_codes || 0}</p>
+                                            <p className="text-xs text-foreground/60">codes</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Raw JSON (collapsible) */}
+                        <details className="mt-6">
+                            <summary className="cursor-pointer text-sm font-mono text-foreground/60 hover:text-foreground">
+                                View Raw JSON Data
+                            </summary>
+                            <pre className="mt-2 text-xs font-mono text-foreground/60 whitespace-pre-wrap bg-black/20 p-4 rounded max-h-96 overflow-y-auto">
+                                {JSON.stringify(result, null, 2)}
+                            </pre>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     const renderCodesTab = () => {
-        if (!result?.phase1_codes?.codes) return null
+        // Try different possible structures
+        const codes = result?.phase1_codes?.codes || result?.codes || []
+
+        if (!codes || codes.length === 0) {
+            return renderRawData()
+        }
+
         return (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <h3 className="text-2xl font-light mb-6 text-foreground">Detailed Phenomenological Codes</h3>
@@ -69,7 +145,7 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-foreground/5">
-                            {result.phase1_codes.codes.map((code: any, i: number) => (
+                            {codes.map((code: any, i: number) => (
                                 <tr key={i} className="hover:bg-foreground/5 transition-colors">
                                     <td className="p-4">
                                         <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-[#e19136]/10 text-[#e19136]">
@@ -89,63 +165,77 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     }
 
     const renderVisualsTab = () => {
-        if (!result?.phase3_synchronic) return null
+        const syncData = result?.phase3_synchronic
+
+        if (!syncData) {
+            return (
+                <div className="text-center py-12 text-foreground/60">
+                    <Activity className="w-12 h-12 mx-auto mb-4 opacity-20" />
+                    <p>Visual analysis data not available</p>
+                    <p className="text-sm mt-2">This data will be generated in future analysis phases</p>
+                </div>
+            )
+        }
+
         return (
             <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-
                 {/* Body Map Section */}
-                <div>
-                    <h3 className="text-2xl font-light mb-6 text-foreground">Corporeal Resonance</h3>
-                    <BodyMap data={result.phase3_synchronic.body_map_data} />
-                </div>
+                {syncData.body_map_data && (
+                    <div>
+                        <h3 className="text-2xl font-light mb-6 text-foreground">Corporeal Resonance</h3>
+                        <BodyMap data={syncData.body_map_data} />
+                    </div>
+                )}
 
                 {/* Radar Chart Section */}
-                <div>
-                    <h3 className="text-2xl font-light mb-6 text-foreground">Dimensional Configuration</h3>
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-1">
-                            <DimensionRadarChart data={result.phase3_synchronic.synchronic_configurations} />
-                        </div>
-                        <div className="lg:col-span-2 bg-foreground/5 rounded-lg p-6">
-                            <h4 className="text-sm font-mono text-foreground/60 mb-4">Phase Intensity Heatmap</h4>
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead>
-                                        <tr className="border-b border-foreground/10">
-                                            <th className="text-left p-2 font-mono text-xs text-foreground/50">Phase</th>
-                                            {Object.keys(result.phase3_synchronic.synchronic_configurations[0]?.active_dimensions || {}).map(dim => (
-                                                <th key={dim} className="text-left p-2 font-mono text-xs text-foreground/50">{dim}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {result.phase3_synchronic.synchronic_configurations.map((config: any, i: number) => (
-                                            <tr key={i} className="border-b border-foreground/5">
-                                                <td className="p-2 font-mono text-xs text-foreground">{config.phase_name}</td>
-                                                {Object.keys(config.active_dimensions || {}).map(dim => {
-                                                    const intensity = config.active_dimensions[dim]?.intensity || 0
-                                                    return (
-                                                        <td key={dim} className="p-2">
-                                                            <div
-                                                                className="h-6 w-full rounded flex items-center justify-center text-[10px] font-bold transition-all"
-                                                                style={{
-                                                                    backgroundColor: `rgba(225, 145, 54, ${intensity / 10})`,
-                                                                    color: intensity > 5 ? 'white' : 'rgba(255,255,255,0.5)'
-                                                                }}
-                                                            >
-                                                                {intensity}
-                                                            </div>
-                                                        </td>
-                                                    )
-                                                })}
+                {syncData.synchronic_configurations && (
+                    <div>
+                        <h3 className="text-2xl font-light mb-6 text-foreground">Dimensional Configuration</h3>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div className="lg:col-span-1">
+                                <DimensionRadarChart data={syncData.synchronic_configurations} />
+                            </div>
+                            <div className="lg:col-span-2 bg-foreground/5 rounded-lg p-6">
+                                <h4 className="text-sm font-mono text-foreground/60 mb-4">Phase Intensity Heatmap</h4>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead>
+                                            <tr className="border-b border-foreground/10">
+                                                <th className="text-left p-2 font-mono text-xs text-foreground/50">Phase</th>
+                                                {Object.keys(syncData.synchronic_configurations[0]?.active_dimensions || {}).map(dim => (
+                                                    <th key={dim} className="text-left p-2 font-mono text-xs text-foreground/50">{dim}</th>
+                                                ))}
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {syncData.synchronic_configurations.map((config: any, i: number) => (
+                                                <tr key={i} className="border-b border-foreground/5">
+                                                    <td className="p-2 font-mono text-xs text-foreground">{config.phase_name}</td>
+                                                    {Object.keys(config.active_dimensions || {}).map(dim => {
+                                                        const intensity = config.active_dimensions[dim]?.intensity || 0
+                                                        return (
+                                                            <td key={dim} className="p-2">
+                                                                <div
+                                                                    className="h-6 w-full rounded flex items-center justify-center text-[10px] font-bold transition-all"
+                                                                    style={{
+                                                                        backgroundColor: `rgba(225, 145, 54, ${intensity / 10})`,
+                                                                        color: intensity > 5 ? 'white' : 'rgba(255,255,255,0.5)'
+                                                                    }}
+                                                                >
+                                                                    {intensity}
+                                                                </div>
+                                                            </td>
+                                                        )
+                                                    })}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         )
     }
@@ -153,6 +243,18 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
     const renderSynthesisTab = () => {
         return (
             <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                {/* Show phenomenon nucleus if available */}
+                {result?.phenomenon_nucleus && (
+                    <div>
+                        <h3 className="text-2xl font-light mb-6 text-foreground">Phenomenon Nucleus</h3>
+                        <div className="bg-foreground/5 p-8 rounded-lg border border-foreground/10">
+                            <p className="text-foreground/90 leading-relaxed text-lg">
+                                {result.phenomenon_nucleus}
+                            </p>
+                        </div>
+                    </div>
+                )}
+
                 {/* Diachronic Structure */}
                 {result?.phase2_diachronic?.phases && (
                     <div>
@@ -177,6 +279,18 @@ export function ResultsSection({ result, t }: ResultsSectionProps) {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Markdown Table */}
+                {result?.markdown_table && (
+                    <div>
+                        <h3 className="text-2xl font-light mb-6 text-foreground">Analysis Table</h3>
+                        <div className="bg-foreground/5 p-6 rounded-lg border border-foreground/10 overflow-x-auto">
+                            <pre className="text-xs font-mono text-foreground/80 whitespace-pre-wrap">
+                                {result.markdown_table}
+                            </pre>
                         </div>
                     </div>
                 )}
