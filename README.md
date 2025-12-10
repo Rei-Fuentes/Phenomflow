@@ -220,10 +220,11 @@ Las contribuciones son bienvenidas. Por favor:
 
 ---
 
-## 📧 Contacto
+## 📧 Contacto: reinerfuentes7@gmail.com
 
 Proyecto: [https://github.com/Rei-Fuentes/PhenomFlow](https://github.com/Rei-Fuentes/PhenomFlow)
 
 ---
 
-**Desarrollado con ❤️ para la investigación fenomenológica**
+**Desarrollado por Reiner Fuentes Ferrada
+para la investigación fenomenológica**
